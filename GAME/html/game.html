@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckWord — Jeu</title>
+    <link rel="shortcut icon" href="./../image/logo.ico" type="image/x-icon">
+    <!-- Importation des polices du nouveau design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" id="theme-css" href="./../css/game7.css">
+   
+</head>
+<body>
+    <!-- Fonds décoratifs -->
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <!-- Wrapper principal -->
+    <div class="game-wrap">
+        
+        <!-- Nouvel en-tête (Header) -->
+        <header class="game-header">
+            <a href="./../index.html" class="back-btn">← Retour</a>
+            <div class="header-title">⚜ CheckWord</div>
+            <div class="level-indicator" id="headerLevel">Niveau 1</div>
+        </header>
+
+        <div class="bigcontainer">
+            <!-- Ornements aux 4 coins -->
+            <div class="ornament tl"></div>
+            <div class="ornament tr"></div>
+            <div class="ornament bl"></div>
+            <div class="ornament br"></div>
+
+            <!-- Ton conteneur intact pour le JS -->
+            <div class="container cache" id="container">
+                <div class="description" id="description"></div>
+                <div class="game" id="game"></div>
+                <div class="lifebar" id="lifebar"></div>
+                <div class="keyboard" id="keyboard"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Boîte de Défaite -->
+    <div class="boite" id="boite">
+        <span class="modal-icon">💀</span>
+        <div class="modal-title">Défaite !</div>
+        <div class="modal-text">Désolé, vous avez atteint le nombre d'essais maximal.</div>
+        <div class="button">
+            <a href="./../index.html"><button type="button" class="btn-secondary">Retour</button></a>
+            <button type="button" class="btn-primary" onclick="game()">Réessayer</button>
+        </div>
+    </div>
+
+    <!-- Boîte de Victoire -->
+    <div class="boite" id="boite2">
+        <span class="modal-icon">🏆</span>
+        <div class="modal-title">Victoire !</div>
+        <div class="modal-text">Félicitations, vous avez trouvé le mot caché !</div>
+        <div class="button">
+            <a href="./../index.html"><button type="button" class="btn-secondary">Retour</button></a>
+            <button type="button" class="btn-primary" onclick="game()">Niveau suivant</button>
+        </div>
+    </div>
+ <script>
+    // Script pour le jeu (8 thèmes : base, 1, 2, 3, 4, 5, 6, 7)
+    function updateTheme() {
+        let level = 1;
+        if (localStorage.getItem('player')) {
+            level = JSON.parse(localStorage.getItem('player')).level || 1;
+        }
+        
+        // Calcule le palier (de 1 à 8)
+        let themeNum = Math.ceil(level / 50);
+        
+        // Bloque au 8ème thème maximum (pour les niveaux 351 et plus)
+        if (themeNum > 8) {
+            themeNum = 8; 
+        }
+        
+        // Détermine le suffixe : vide pour le 1er, puis "1", "2"... jusqu'à "7"
+        let suffix = (themeNum === 1) ? "" : (themeNum - 1);
+        
+        // Modifie le fichier CSS (Si suffix est vide, ça donnera "game.css")
+        document.getElementById('theme-css').href = "./../css/game" + suffix + ".css";
+    }
+    
+    // Exécute la fonction immédiatement
+    updateTheme();
+</script>
+    <script type="text/javascript" src="./../js/js.js"></script>
+    
+   
+</body>
+</html>

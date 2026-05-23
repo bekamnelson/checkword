@@ -1,0 +1,370 @@
+/* --- game.css - THÈME URBAIN JAPONAIS / CRÉPUSCULE BÉTON --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Sawarabi+Gothic&display=swap');
+
+:root {
+    --sun-gold: #ffb74d;
+    --sun-deep: #e65100;
+    --concrete-dark: #1e2226;
+    --concrete-panel: rgba(38, 44, 51, 0.95);
+    --poster-green: #385c45;
+    --poster-paper: #f4f1ea;
+    --text-light: #f5f5f5;
+    --text-muted: #9aa0a6;
+    --red-bin: #d32f2f;
+    --letter-bg: rgba(255, 255, 255, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    min-height: 100vh;
+    font-family: 'Noto Sans', sans-serif;
+    background: var(--concrete-dark);
+    overflow-x: hidden;
+    color: var(--text-light);
+}
+
+/* ── BACKGROUNDS ── */
+.hero-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('./../image/plan7.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6) contrast(1.1); /* Plus sombre en jeu */
+    z-index: 0;
+}
+.hero-overlay {
+    position: fixed;
+    inset: 0;
+    /* Ombre urbaine avec légère touche dorée au centre */
+    background: radial-gradient(ellipse at 50% 40%, rgba(255, 183, 77, 0.05) 0%, rgba(30, 34, 38, 0.9) 100%);
+    z-index: 1;
+}
+
+/* ── LAYOUT ── */
+.game-wrap {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 30px;
+}
+
+/* ── HEADER ── */
+.game-header {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: rgba(0,0,0,0.5);
+    padding: 12px 20px;
+    border-radius: 4px;
+    border-left: 4px solid var(--sun-gold); /* Rappel urbain */
+}
+
+.back-btn {
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.back-btn:hover { color: var(--sun-gold); }
+
+.header-title {
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+}
+
+.level-indicator {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--sun-gold);
+    background: rgba(255, 183, 77, 0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* ── MAIN PANEL (.bigcontainer) ── */
+.bigcontainer {
+    background: var(--concrete-panel);
+    backdrop-filter: blur(10px);
+    border: 1px solid #454d55;
+    border-top: 6px solid var(--poster-green);
+    border-radius: 4px;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* ── INDICE (Affiche municipale en papier collée) ── */
+.contenuedescription {
+    text-align: left;
+    background: var(--poster-paper);
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 20px 24px 20px 24px;
+    margin: 0 auto 28px auto;
+    position: relative;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333; /* Texte sombre sur papier clair */
+    width: 100%;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+    /* Effet papier légèrement jauni */
+    background-image: radial-gradient(circle, transparent 80%, rgba(0,0,0,0.03) 100%);
+}
+
+.contenuedescription::before {
+    content: 'INFORMATION';
+    display: block;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--poster-green);
+    margin-bottom: 8px;
+    border-bottom: 2px solid var(--poster-green);
+    padding-bottom: 4px;
+}
+
+/* ── LIFE BAR (Lumières Rouges style poubelle) ── */
+.lifebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.lifebar::before {
+    content: 'CHANCES';
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-right: 5px;
+}
+
+.life {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px; /* Carré */
+    background: #333;
+    border: 1px solid #555;
+    transition: all 0.3s ease;
+}
+
+/* Vies pleines = Rouge comme la poubelle "Combustible" */
+.red {
+    background: var(--red-bin);
+    border-color: #ff5252;
+    box-shadow: 0 0 10px rgba(211, 47, 47, 0.8);
+}
+
+/* ── WORD DISPLAY (Blocs d'Asphalte Mouillé) ── */
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: clamp(4px, 1.5vw, 8px);
+    margin-bottom: 35px;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.game div {
+    flex: 0 1 54px;
+    height: clamp(45px, 10vw, 65px);
+    background: #1e2226; /* Noir asphalte */
+    border: 1px solid #454d55;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 900;
+    color: var(--text-light);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    /* Reflet d'eau au sommet du bloc */
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.1);
+}
+
+.game div .baredeco {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--sun-gold); /* Reflet du soleil couchant */
+    margin: 0;
+    box-shadow: 0 -2px 10px rgba(255, 183, 77, 0.5);
+}
+
+/* ── KEYBOARD (Pavés urbains) ── */
+#keyboard {
+    margin-top: 10px;
+    width: 100%;
+}
+
+#keyboard::before {
+    content: 'ENTRÉE DES DONNÉES';
+    display: block;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.keyboard2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.letter {
+    width: clamp(34px, 7vw, 46px);
+    height: clamp(40px, 7vw, 50px);
+    background: #2a3036;
+    border: 1px solid #454d55;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 700;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    text-transform: uppercase;
+    /* Effet touche physique */
+    box-shadow: 0 4px 0 #15181b;
+}
+
+.letter:hover {
+    background: var(--sun-deep);
+    border-color: var(--sun-gold);
+    color: #fff;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #15181b, 0 0 10px rgba(230, 81, 0, 0.4);
+}
+
+.letter:active { 
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #15181b;
+}
+
+/* ── MODALS (Affiches d'Alerte) ── */
+.cache {
+    filter: blur(6px) grayscale(30%);
+    pointer-events: none;
+}
+
+.boite {
+    display: none; 
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--poster-paper); /* Fond papier clair */
+    border: 2px solid #ccc;
+    border-top: 10px solid;
+    border-radius: 2px;
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    z-index: 100;
+}
+
+/* Couleur de la barre du haut selon Victoire ou Défaite */
+#boite { border-top-color: var(--red-bin); } /* Défaite */
+#boite2 { border-top-color: var(--sun-gold); } /* Victoire */
+
+.modal-icon {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.modal-title {
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #212121;
+    margin-bottom: 10px;
+}
+
+.modal-text {
+    font-size: 1.1rem;
+    color: #424242;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.boite .button {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 12px 25px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: #212121;
+    color: #fff;
+}
+.btn-primary:hover { background: var(--sun-deep); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #424242;
+}
+.btn-secondary:hover { background: #bdbdbd; }
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 500px) {
+    .game-wrap { padding: 15px 10px; }
+    .bigcontainer { flex: 1; padding: 20px 15px; }
+    .header-title { font-size: 1.3rem; }
+    .boite { padding: 30px 20px; }
+}

@@ -1,0 +1,240 @@
+/* --- style.css - THÈME SCI-FI / LABO HOLOGRAMME --- */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&family=Share+Tech+Mono&display=swap');
+
+:root {
+    /* Palette Hologramme Labo */
+    --holo-cyan: #00e5ff;        /* Bleu néon très clair */
+    --holo-blue: #0051ff;        /* Bleu électrique profond */
+    --lab-dark: #020813;         /* Fond très sombre */
+    --glass-bg: rgba(6, 15, 30, 0.75); /* Verre bleuté transparent */
+    --text-main: #e0f7fa;        /* Blanc bleuté */
+    --text-muted: #80deea;       /* Cyan atténué */
+    --alert-red: #ff1744;        /* Rouge alerte scientifique */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    min-height: 100vh;
+    font-family: 'Exo 2', sans-serif;
+    background: var(--lab-dark);
+    overflow-x: hidden;
+    color: var(--text-main);
+    cursor: default;
+}
+
+/* ── HERO BACKGROUND ── */
+.hero-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('./../image/plan6.png'); /* Adaptez plan.png si besoin */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6) contrast(1.2) saturate(1.1); 
+    z-index: 0;
+}
+.hero-overlay {
+    position: fixed;
+    inset: 0;
+    /* Un voile bleu nuit pour faire ressortir l'hologramme */
+    background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.05) 0%, rgba(2, 8, 19, 0.9) 100%);
+    z-index: 1;
+}
+
+/* ── MAIN CONTAINER ── */
+.page-wrap {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* ── TITLE CARD ── */
+.title-card {
+    text-align: center;
+    margin-bottom: 35px;
+    animation: holoFlicker 1.5s ease both;
+}
+
+.logo-emblem {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    border: 2px solid var(--holo-cyan);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), inset 0 0 15px rgba(0, 81, 255, 0.6);
+    overflow: hidden;
+    background: var(--lab-dark);
+    /* Motif cible / Atome */
+    background-image: radial-gradient(circle, transparent 40%, rgba(0,229,255,0.2) 41%, transparent 43%);
+}
+.logo-emblem img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+
+.game-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 0 0 10px var(--holo-blue), 0 0 20px var(--holo-cyan);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.title-sub {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--holo-cyan);
+    margin-top: 5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+.title-divider { display: none; }
+
+/* ── MAIN PANEL (Interface HUD) ── */
+.panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 4px; /* Formes droites / Tech */
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(0, 81, 255, 0.2);
+    text-align: center;
+    position: relative;
+    /* Quadrillage type plan de laboratoire */
+    background-image: 
+        linear-gradient(rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: fadeUp 1s 0.3s ease both;
+}
+
+/* ── SCENE IMAGE (Écran d'analyse) ── */
+.scene-frame {
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--holo-cyan);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+    margin-bottom: 25px;
+    position: relative;
+}
+.scene-frame img {
+    width: 100%;
+    display: block;
+    filter: sepia(0.2) hue-rotate(180deg) saturate(1.2); /* Teinte bleutée "Hologramme" */
+}
+/* Ligne de scan radar sur l'image */
+.scene-frame::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 5px;
+    background: rgba(0, 229, 255, 0.6);
+    box-shadow: 0 0 10px var(--holo-cyan);
+    animation: scanline 3s linear infinite;
+}
+
+/* ── LEVEL BADGE (Identifiant Système) ── */
+.level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 81, 255, 0.2);
+    border-left: 3px solid var(--holo-cyan);
+    border-right: 3px solid var(--holo-cyan);
+    padding: 6px 20px;
+    margin-bottom: 25px;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--text-muted);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.level-badge .level-num { color: #fff; font-size: 1.2rem; text-shadow: 0 0 5px var(--holo-cyan); }
+
+/* ── START BUTTON (Initialisation Séquence) ── */
+.btn-start {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    color: #fff;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid var(--holo-cyan);
+    border-radius: 0px; /* Tech blocky */
+    padding: 15px 40px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 280px;
+    box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.2);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.btn-start:hover {
+    background: rgba(0, 229, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), inset 0 0 15px rgba(0, 229, 255, 0.5);
+    text-shadow: 0 0 8px #fff;
+}
+.btn-start:active { transform: scale(0.98); }
+
+.btn-icon { font-size: 1.3rem; }
+
+/* ── DECORATIVE BOTTOM ── */
+.panel-footer {
+    margin-top: 25px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* ── CORNER HUD ORNAMENTS ── */
+.ornament {
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: var(--holo-cyan);
+    border-style: solid;
+}
+.ornament.tl { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.ornament.tr { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.ornament.bl { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.ornament.br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes holoFlicker {
+    0% { opacity: 0; filter: blur(4px); }
+    10% { opacity: 0.5; filter: blur(0px); }
+    20% { opacity: 0.2; }
+    30% { opacity: 1; }
+    40% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+@keyframes scanline {
+    0% { top: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+    .panel { padding: 30px 20px; }
+}
+@media (max-width: 480px) {
+    .game-title { font-size: 2.2rem; }
+    .title-sub { font-size: 0.8rem; }
+    .btn-start { font-size: 1rem; padding: 12px 20px; }
+}

@@ -1,0 +1,363 @@
+/* --- game.css - THÈME RUE JAPONAISE / CRÉPUSCULE ANIME --- */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap');
+
+:root {
+    --sunset-gold: #ffca28;
+    --sunset-orange: #f57c00;
+    --dusk-shadow: #2d241f;
+    --panel-bg: rgba(35, 28, 25, 0.85);
+    --sign-green: #436644;
+    --text-light: #fff8e1;
+    --text-muted: #9e8e86;
+    --letter-bg: rgba(255, 255, 255, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    min-height: 100vh;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    background: var(--dusk-shadow);
+    overflow-x: hidden;
+    color: var(--text-light);
+}
+
+/* ── BACKGROUNDS ── */
+.hero-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('./../image/plan5.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6) saturate(1.1); /* Plus sombre pour jouer confortablement */
+    z-index: 0;
+}
+.hero-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(245, 124, 0, 0.1) 0%, rgba(20, 15, 12, 0.9) 100%);
+    z-index: 1;
+}
+
+/* ── LAYOUT ── */
+.game-wrap {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 30px;
+}
+
+/* ── HEADER ── */
+.game-header {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 20px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    border-bottom: 2px solid var(--sunset-orange);
+}
+
+.back-btn {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--sunset-gold);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.back-btn:hover { color: #fff; text-shadow: 0 0 8px var(--sunset-gold); }
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-light);
+    text-shadow: 0 0 10px var(--sunset-orange);
+    letter-spacing: 0.05em;
+}
+
+.level-indicator {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* ── MAIN PANEL (.bigcontainer) ── */
+.bigcontainer {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 202, 40, 0.2);
+    border-top: 5px solid var(--sign-green);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* ── INDICE (Affiche murale japonaise) ── */
+.contenuedescription {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 4px solid var(--sign-green); /* Rappel du panneau vert */
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 0 auto 28px auto;
+    position: relative;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    width: 100%;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+}
+
+.contenuedescription::before {
+    content: 'ヒント (INDICE)';
+    position: absolute;
+    top: -12px; left: 15px;
+    background: var(--sign-green);
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* ── LIFE BAR (Lumières du crépuscule) ── */
+.lifebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.lifebar::before {
+    content: 'VIES';
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-right: 5px;
+}
+
+.life {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+/* Vies pleines = lampadaires allumés */
+.red {
+    background: var(--sunset-gold);
+    border-color: #fff;
+    box-shadow: 0 0 12px var(--sunset-gold), 0 0 25px var(--sunset-orange);
+}
+
+/* ── WORD DISPLAY (Blocs d'asphalte / Ombre) ── */
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: clamp(4px, 1.5vw, 8px);
+    margin-bottom: 35px;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.game div {
+    flex: 0 1 54px;
+    height: clamp(45px, 10vw, 65px);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 900;
+    color: var(--sunset-gold);
+    text-shadow: 0 0 10px rgba(245, 124, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.game div .baredeco {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--sunset-orange);
+    margin: 0;
+    box-shadow: 0 -2px 10px var(--sunset-orange);
+}
+
+/* ── KEYBOARD (Pavés de la rue) ── */
+#keyboard {
+    margin-top: 10px;
+    width: 100%;
+}
+
+#keyboard::before {
+    content: 'LETTRES';
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: left;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+}
+
+.keyboard2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.letter {
+    width: clamp(34px, 7vw, 46px);
+    height: clamp(40px, 7vw, 50px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 700;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    text-transform: uppercase;
+}
+
+.letter:hover {
+    background: var(--sunset-orange);
+    border-color: var(--sunset-gold);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
+}
+
+.letter:active { 
+    transform: translateY(1px);
+}
+
+/* ── MODALS (Fin de partie) ── */
+.cache {
+    filter: blur(6px);
+    pointer-events: none;
+}
+
+.boite {
+    display: none; 
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--panel-bg);
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--sunset-orange);
+    border-top: 8px solid var(--sunset-gold);
+    border-radius: 12px;
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    z-index: 100;
+    animation: fadeIn 0.4s ease both;
+}
+
+.modal-icon {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    display: block;
+    text-shadow: 0 0 20px rgba(255, 202, 40, 0.5);
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.modal-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.boite .button {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 12px 25px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: var(--sunset-orange);
+    color: #fff;
+}
+.btn-primary:hover { background: var(--sunset-gold); color: #000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 202, 40, 0.4); }
+
+.btn-secondary {
+    background: rgba(255,255,255,0.1);
+    color: var(--text-light);
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn {
+    0% { transform: translate(-50%, -45%); opacity: 0; }
+    100% { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 500px) {
+    .game-wrap { padding: 15px 10px; }
+    .bigcontainer { 
+        flex: 1; 
+        padding: 20px 15px; 
+    }
+    .header-title { font-size: 1.3rem; }
+    .boite { padding: 30px 20px; }
+}

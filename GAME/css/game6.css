@@ -1,0 +1,366 @@
+/* --- game.css - THÈME SCI-FI / LABO HOLOGRAMME --- */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --holo-cyan: #00e5ff;
+    --holo-blue: #0051ff;
+    --lab-dark: #020813;
+    --glass-bg: rgba(6, 15, 30, 0.85);
+    --text-main: #e0f7fa;
+    --text-muted: #80deea;
+    --alert-red: #ff1744;
+    --letter-bg: rgba(0, 229, 255, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    min-height: 100vh;
+    font-family: 'Exo 2', sans-serif;
+    background: var(--lab-dark);
+    overflow-x: hidden;
+    color: var(--text-main);
+}
+
+/* ── BACKGROUNDS ── */
+.hero-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('./../image/plan6.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5) contrast(1.2);
+    z-index: 0;
+}
+.hero-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(0, 81, 255, 0.15) 0%, rgba(2, 8, 19, 0.9) 100%);
+    z-index: 1;
+}
+
+/* ── LAYOUT ── */
+.game-wrap {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 30px;
+}
+
+/* ── HEADER (HUD Top Bar) ── */
+.game-header {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: rgba(0, 229, 255, 0.05);
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--holo-cyan);
+    backdrop-filter: blur(5px);
+}
+
+.back-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--holo-cyan);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.back-btn::before { content: '< '; }
+.back-btn:hover { color: #fff; text-shadow: 0 0 10px var(--holo-cyan); }
+
+.header-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.4rem;
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px var(--holo-blue);
+}
+
+.level-indicator {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* ── MAIN PANEL (.bigcontainer) ── */
+.bigcontainer {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(0, 81, 255, 0.1);
+    position: relative;
+    /* Quadrillage Blueprint */
+    background-image: 
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    background-size: 15px 15px;
+}
+
+/* Ornements HUD du Panel */
+.ornament {
+    position: absolute;
+    width: 15px; height: 15px;
+    border-color: var(--holo-cyan);
+    border-style: solid;
+}
+.ornament.tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.ornament.tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+.ornament.bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+.ornament.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* ── INDICE (Console Data) ── */
+.contenuedescription {
+    text-align: left;
+    background: rgba(0, 0, 0, 0.6);
+    border-left: 3px solid var(--holo-cyan);
+    padding: 15px 20px;
+    margin: 0 auto 28px auto;
+    position: relative;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    color: #fff;
+    width: 100%;
+    box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.1);
+}
+
+.contenuedescription::before {
+    content: '> QUERY.DATA:';
+    display: block;
+    font-size: 0.8rem;
+    color: var(--holo-cyan);
+    margin-bottom: 5px;
+}
+
+/* ── LIFE BAR (Cellules d'Énergie) ── */
+.lifebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.lifebar::before {
+    content: 'SYS.POWER:';
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-right: 5px;
+}
+
+.life {
+    width: 20px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    transition: all 0.3s ease;
+    transform: skewX(-15deg); /* Style Tech */
+}
+
+/* Vies pleines = Batteries chargées */
+.red {
+    background: var(--holo-cyan);
+    border-color: #fff;
+    box-shadow: 0 0 10px var(--holo-cyan);
+}
+
+/* ── WORD DISPLAY (Séquence ADN / Lettres) ── */
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: clamp(4px, 1.5vw, 8px);
+    margin-bottom: 35px;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.game div {
+    flex: 0 1 50px;
+    height: clamp(45px, 10vw, 60px);
+    background: rgba(0, 81, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: #fff;
+    text-shadow: 0 0 10px var(--holo-cyan);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.game div .baredeco {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--holo-cyan);
+    margin: 0;
+    box-shadow: 0 -2px 10px var(--holo-cyan);
+}
+
+/* ── KEYBOARD (Terminal Tactile) ── */
+#keyboard {
+    margin-top: 10px;
+    width: 100%;
+}
+
+#keyboard::before {
+    content: 'INPUT SEQUENCE:';
+    display: block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: left;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed rgba(0, 229, 255, 0.2);
+    padding-bottom: 5px;
+}
+
+.keyboard2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.letter {
+    width: clamp(34px, 7vw, 46px);
+    height: clamp(38px, 7vw, 48px);
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--holo-cyan);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    user-select: none;
+    text-transform: uppercase;
+}
+
+.letter:hover {
+    background: rgba(0, 229, 255, 0.2);
+    border-color: var(--holo-cyan);
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.letter:active { 
+    transform: scale(0.95);
+    background: var(--holo-cyan);
+    color: #000;
+}
+
+/* ── MODALS (Alerte Système) ── */
+.cache {
+    filter: blur(8px) sepia(0.5) hue-rotate(180deg);
+    pointer-events: none;
+}
+
+.boite {
+    display: none; 
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(2, 8, 19, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--holo-cyan);
+    border-top: 4px solid var(--holo-cyan);
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0,0,0,1), 0 0 20px rgba(0, 229, 255, 0.2);
+    z-index: 100;
+}
+
+#boite { border-top-color: var(--alert-red); border-color: var(--alert-red); box-shadow: 0 0 30px rgba(255,23,68,0.2); }
+
+.modal-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+    filter: grayscale(100%) brightness(200%) drop-shadow(0 0 10px var(--holo-cyan));
+}
+#boite .modal-icon { filter: grayscale(100%) brightness(200%) drop-shadow(0 0 10px var(--alert-red)); }
+
+.modal-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.6rem;
+    color: var(--holo-cyan);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+#boite .modal-title { color: var(--alert-red); }
+
+.modal-text {
+    font-size: 1rem;
+    color: var(--text-main);
+    margin-bottom: 30px;
+}
+
+.boite .button {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--holo-cyan);
+    border-color: var(--holo-cyan);
+}
+.btn-primary:hover { background: var(--holo-cyan); color: #000; box-shadow: 0 0 15px var(--holo-cyan); }
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    border-color: var(--text-muted);
+}
+.btn-secondary:hover { color: #fff; border-color: #fff; }
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 500px) {
+    .game-wrap { padding: 15px 10px; }
+    .bigcontainer { flex: 1; padding: 20px 15px; }
+    .header-title { font-size: 1.2rem; }
+    .boite { padding: 30px 20px; }
+}

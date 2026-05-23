@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckWord — Le Défi des Mots</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+ <!-- À l'intérieur de la balise <head> de index.html -->
+
+<link id="theme-css" rel="stylesheet" href="./css/style.css">
+
+<script>
+    // Script pour l'accueil (8 thèmes : base, 1, 2, 3, 4, 5, 6, 7)
+    (function() {
+        let level = 1;
+        if (localStorage.getItem('player')) {
+            level = JSON.parse(localStorage.getItem('player')).level || 1;
+        }
+        
+        // Calcule le palier (de 1 à 8)
+        let themeNum = Math.ceil(level / 50);
+        
+        // Bloque au 8ème thème maximum
+        if (themeNum > 8) {
+            themeNum = 8; 
+        }
+        
+        // Détermine le suffixe (vide, "1", "2"... jusqu'à "7")
+        let suffix = (themeNum === 1) ? "" : (themeNum - 1);
+        
+        // 1. Modifie le fichier CSS
+        document.getElementById('theme-css').href = "./css/style" + suffix + ".css";
+        
+        // 2. Modifie l'image au centre (quand la page a fini de charger)
+        document.addEventListener("DOMContentLoaded", function() {
+            const sceneImg = document.getElementById('scene-img');
+            if(sceneImg) {
+                sceneImg.src = "./image/plan" + suffix + ".png"; // Donnera plan.png, plan1.png, etc.
+            }
+        });
+    })();
+</script>
+</head>
+<body>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="page-wrap">
+        <div class="title-card">
+            <div class="logo-emblem">
+                <img src="./image/logo.png" alt="CheckWord">
+            </div>
+            <h1 class="game-title">CheckWord</h1>
+            <div class="title-divider">
+                <span></span>
+                <span class="fleur">⚜</span>
+                <span></span>
+            </div>
+            <p class="title-sub">Le Défi des Mots Cachés</p>
+        </div>
+
+        <div class="panel">
+            <div class="ornament tl"></div>
+            <div class="ornament tr"></div>
+            <div class="ornament bl"></div>
+            <div class="ornament br"></div>
+
+            <div class="scene-frame">
+                 <img id="scene-img" src="./image/plan.png" alt="Scène du jeu">
+            </div>
+
+            <div class="level-badge">
+                <span class="badge-icon">🏆</span>
+                <span>Niveau</span>
+                <span class="level-num" id="levelNum">1</span>
+            </div>
+
+            <br>
+
+            <button class="btn-start" id="startBtn">
+                <span class="btn-icon">⚔️</span>
+                Commencer
+            </button>
+
+            <div class="panel-footer">« Chaque mot révélé, une victoire de plus »</div>
+        </div>
+    </div>
+
+    <script>
+     const GAME_VERSION = "2.0"; 
+      if (localStorage.getItem('game_version') !== '2.0') {
+    localStorage.removeItem('player'); 
+    localStorage.setItem('game_version', '2.0'); 
+     let player = {
+            level:1
+        }
+        localStorage.setItem('player',JSON.stringify(player));
+}
+
+
+
+        const levelNum = document.getElementById('levelNum');
+        if (localStorage.getItem('player')) {
+            const player = JSON.parse(localStorage.getItem('player'));
+            levelNum.textContent = player.level;
+        }
+        document.getElementById('startBtn').addEventListener('click', function() {
+            window.location = './html/game.html';
+        });
+    </script>
+</body>
+</html>
