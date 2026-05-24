@@ -1,0 +1,4 @@
+# Ignorer le fichier setup lourd
+*.exe
+
+*.apk
