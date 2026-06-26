@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckWord - Survie Multijoueur</title>
+    <link rel="stylesheet" href="./../css/style1.css" id="theme-css">
+    <link rel="stylesheet" href="./../css/challenge.css" >
+    
+</head>
+<body>
+
+    <!-- Fonds décoratifs -->
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <!-- Wrapper principal -->
+    <div class="game-wrap">
+        
+        <header class="game-header">
+            <a href="./../index2.html" class="back-btn">← Retour</a>
+            <div class="header-title">⚜ CheckWord</div>
+            <div class="level-indicator" id="headerLevel">Mode Survie</div>
+        </header>
+
+        <!-- ========================================== -->
+        <!-- ECRAN 1 : FORMULAIRE NOMBRE DE JOUEURS     -->
+        <!-- ========================================== -->
+        <div class="bigcontainer" id="setup-screen">
+            <div class="ornament tl"></div><div class="ornament tr"></div>
+            <div class="ornament bl"></div><div class="ornament br"></div>
+            
+            <h2 style="color: var(--gold-light); text-align: center; margin-bottom: 20px; font-family: 'Cinzel', serif;">Configuration</h2>
+            
+            <div id="step-1" style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <label style="color: white;">Combien de joueurs participent ? (Min 2)</label>
+                <input type="number" id="nbPlayersInput" min="2" max="10" value="2" class="input-gold">
+                <button class="btn-primary" onclick="showNameInputs()">Suivant</button>
+            </div>
+
+            <div id="step-2" class="cache" style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <div id="names-container" style="display: flex; flex-direction: column; gap: 10px; width: 100%;"></div>
+                <button class="btn-primary" onclick="validerJoueurs()">Valider les joueurs</button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ECRAN 2 : LE MAÎTRE CHOISIT LE MOT         -->
+        <!-- ========================================== -->
+        <div class="bigcontainer cache" id="word-screen">
+            <div class="ornament tl"></div><div class="ornament tr"></div>
+            <div class="ornament bl"></div><div class="ornament br"></div>
+
+            <h2 style="color: var(--gold-light); text-align: center; font-family: 'Cinzel', serif;">Phase du Maître</h2>
+            <p id="master-info" style="color: white; text-align: center; margin: 15px 0;">C'est au tour de ... de choisir un mot !</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <input type="text" id="secretWordInput" placeholder="Mot secret (caché)" class="input-gold">
+                <input type="text" id="hintInput" placeholder="Indice du mot" class="input-gold">
+                <button class="btn-primary" onclick="startRound()">Lancer la partie</button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ECRAN 3 : LE JEU PRINCIPAL                 -->
+        <!-- ========================================== -->
+        <div id="game-screen" class="cache" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <p id="tour-indicator" style="color: var(--gold-light); font-size: 1.2rem; font-family: 'Cinzel', serif; margin-bottom: 10px; text-shadow: 0 0 10px rgba(240,192,96,0.5);">Tour de : ...</p>
+            
+            <div class="bigcontainer">
+                <div class="ornament tl"></div><div class="ornament tr"></div>
+                <div class="ornament bl"></div><div class="ornament br"></div>
+
+                <div class="container" id="container">
+                    <div class="description" id="description"></div>
+                    <div class="game" id="game"></div>
+                    <div class="keyboard" id="keyboard"></div>
+                </div>
+            </div>
+
+            <!-- Conteneur des profils des joueurs -->
+            <div class="containtplayers" id="containtplayers"></div>
+        </div>
+
+    </div>
+
+    <!-- Boîte de Fin de Manche (Nouveau Maître) -->
+    <div class="boite cache" id="boite-manche">
+        <span class="modal-icon">👑</span>
+        <div class="modal-title">Mot Trouvé !</div>
+        <div class="modal-text" id="manche-text">... a trouvé la dernière lettre et devient le nouveau Maître du Jeu !</div>
+        <div class="button">
+            <button type="button" class="btn-primary" onclick="preparerNouveauTour()">Manche Suivante</button>
+        </div>
+    </div>
+
+    <!-- Boîte de Fin de Jeu (Un seul survivant) -->
+    <div class="boite cache" id="boite-victoire">
+        <span class="modal-icon">🏆</span>
+        <div class="modal-title">Fin de la Partie !</div>
+        <div class="modal-text" id="victoire-text">Le survivant ultime est ... !</div>
+        <div class="button">
+            <a href="./../index2.html"><button type="button" class="btn-secondary">Quitter</button></a>
+            <button type="button" class="btn-primary" onclick="location.reload()">Rejouer</button>
+        </div>
+    </div>
+<script>
+    // Script pour le jeu (8 thèmes : base, 1, 2, 3, 4, 5, 6, 7)
+    function updateTheme() {
+        let level = 1;
+         let themeNum = 1;
+        if (localStorage.getItem('player')) {
+            level = JSON.parse(localStorage.getItem('player')).level || 1;
+        }
+        
+        // Calcule le palier (de 1 à 8)
+         if (localStorage.getItem('player') !=undefined) {
+        themeNum = JSON.parse(localStorage.getItem('player')).selectedTheme || 1;
+         }
+        // Bloque au 8ème thème maximum (pour les niveaux 351 et plus)
+        if (themeNum > 8) {
+            themeNum = 8; 
+        }
+        
+     
+        
+        // Modifie le fichier CSS (Si suffix est vide, ça donnera "game.css")
+        document.getElementById('theme-css').href = "./../css/game" + themeNum+ ".css";
+    }
+    
+    // Exécute la fonction immédiatement
+   updateTheme();
+</script>
+<script type="text/javascript" src="./../js/challenge.js"></script>
+</body>
+</html>

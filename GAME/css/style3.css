@@ -1,24 +1,23 @@
-/* --- style.css - THÈME CANDY / BONBONS --- */
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600;700;900&display=swap');
+/* --- style.css - THÈME CYBERPUNK / NÉON --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
 
 :root {
-    /* Palette Bonbon & Chocolat */
-    --candy-pink: #ff6b9e;       /* Rose fraise/chewing-gum */
-    --candy-light: #ffb6c1;      /* Rose barbe à papa */
-    --frosting: #fff5f8;         /* Blanc crème / Glaçage */
-    --chocolate: #5c3a21;        /* Marron chocolat au lait */
-    --choco-dark: #3a2211;       /* Chocolat noir */
-    --blueberry: #4db8ff;        /* Bleu bonbon */
-    --lemon: #ffcf40;            /* Jaune citron */
-    --text-main: #5c3a21;        /* Texte marron pour la lisibilité */
+    /* Palette Cyberpunk */
+    --neon-cyan: #00f3ff;
+    --neon-purple: #b026ff;
+    --neon-pink: #ff007f;
+    --dark-bg: #050510;
+    --panel-bg: rgba(13, 10, 30, 0.75);
+    --text-main: #e0eaff;
+    --text-muted: #8a99c0;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     min-height: 100vh;
-    font-family: 'Nunito', sans-serif;
-    background: var(--candy-light);
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--dark-bg);
     overflow-x: hidden;
     color: var(--text-main);
     cursor: default;
@@ -31,15 +30,14 @@ body {
     background-image: url('./../image/plan3.png');
     background-size: cover;
     background-position: center;
-    /* On garde l'image lumineuse et saturée pour ce thème */
-    filter: brightness(0.8) contrast(1.1) saturate(1.2);
+    filter: brightness(0.7) contrast(1.1);
     z-index: 0;
 }
 .hero-overlay {
     position: fixed;
     inset: 0;
-    /* Un voile rose très doux pour faire ressortir le texte */
-    background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 107, 158, 0.5) 100%);
+    /* Un voile sombre bleu/violet pour faire ressortir l'interface */
+    background: radial-gradient(circle at 50% 50%, rgba(10, 5, 25, 0.2) 0%, rgba(5, 2, 15, 0.8) 100%);
     z-index: 1;
 }
 
@@ -58,63 +56,80 @@ body {
 /* ── TITLE CARD ── */
 .title-card {
     text-align: center;
-    margin-bottom: 30px;
-    animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    margin-bottom: 40px;
+    animation: glitchIn 1s ease both;
 }
 
 .logo-emblem {
-    width: 130px;
-    height: 130px;
-    margin: 0 auto 15px;
-    border-radius: 50%;
-    /* Bordure façon donut ou sucette */
-    border: 8px solid var(--frosting);
-    box-shadow: 0 10px 25px rgba(255, 107, 158, 0.6), inset 0 0 15px rgba(0,0,0,0.2);
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 15px; /* Forme plus tech (carré arrondi) */
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.5), inset 0 0 15px rgba(0, 243, 255, 0.3);
     overflow: hidden;
-    background: var(--candy-pink);
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotate(45deg); /* Losange futuriste */
 }
-.logo-emblem img { width: 100%; height: 100%; object-fit: cover; }
+.logo-emblem img { 
+    width: 142%; 
+    height: 142%; 
+    object-fit: cover; 
+    transform: rotate(-45deg) translate(-15%, -15%); /* Redresse l'image */
+}
 
 .game-title {
-    font-family: 'Chewy', cursive;
-    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
     color: #ffffff;
-    /* Effet texte 3D bulle/bonbon */
-    text-shadow: 
-        3px 3px 0 var(--candy-pink),
-        -1px -1px 0 var(--candy-pink),
-        4px 4px 15px rgba(92, 58, 33, 0.5);
-    letter-spacing: 0.05em;
-    line-height: 1.1;
-    transform: rotate(-2deg); /* Petit côté fun */
+    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple), 0 0 40px var(--neon-cyan);
+    letter-spacing: 0.15em;
+    line-height: 1.2;
+    text-transform: uppercase;
 }
 
 .title-sub {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--chocolate);
-    background: var(--frosting);
-    padding: 4px 15px;
-    border-radius: 20px;
-    display: inline-block;
-    margin-top: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: var(--neon-cyan);
+    margin-top: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
 }
 
-.title-divider { display: none; /* On cache le séparateur classique pour ce thème */ }
+.title-divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    margin: 16px 0;
+}
+.title-divider span {
+    height: 2px;
+    width: 80px;
+    background: linear-gradient(to right, transparent, var(--neon-purple), transparent);
+}
+.title-divider .fleur {
+    color: var(--neon-cyan);
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
 
-/* ── MAIN PANEL (Plaque de Chocolat / Biscuit) ── */
+/* ── MAIN PANEL (Interface HUD) ── */
 .panel {
-    background: var(--frosting);
-    border: 6px solid var(--candy-pink);
-    border-radius: 40px; /* Très arrondi */
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(176, 38, 255, 0.5);
+    border-top: 3px solid var(--neon-cyan);
+    border-bottom: 3px solid var(--neon-purple);
+    border-radius: 8px;
     padding: 40px 50px;
     width: 100%;
     max-width: 500px;
-    box-shadow: 
-        0 15px 35px rgba(92, 58, 33, 0.4),
-        inset 0 -10px 0 rgba(255, 107, 158, 0.1); /* Effet d'épaisseur */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(176, 38, 255, 0.2);
     text-align: center;
     animation: fadeUp 1s 0.3s ease both;
     position: relative;
@@ -122,117 +137,125 @@ body {
 
 /* ── SCENE IMAGE ── */
 .scene-frame {
-    border-radius: 20px;
+    border-radius: 4px;
     overflow: hidden;
-    border: 4px solid var(--chocolate);
-    box-shadow: 0 8px 20px rgba(92, 58, 33, 0.3);
-    margin-bottom: 25px;
+    border: 1px solid var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    margin-bottom: 32px;
+    position: relative;
 }
 .scene-frame img {
     width: 100%;
     display: block;
-    transition: transform 0.4s ease;
+    filter: sepia(0.3) hue-rotate(220deg) saturate(1.5); /* Donne un ton bleu/cyber à l'image */
 }
-.scene-frame:hover img { transform: scale(1.05); }
+.scene-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Effet Scanline (lignes d'écran) */
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 243, 255, 0.1) 2px, rgba(0, 243, 255, 0.1) 4px);
+    pointer-events: none;
+}
 
-/* ── LEVEL BADGE (Style Pastille) ── */
+/* ── LEVEL BADGE (HUD STATS) ── */
 .level-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: var(--lemon);
-    border: 3px solid var(--chocolate);
-    border-radius: 50px;
-    padding: 10px 25px;
-    margin-bottom: 25px;
-    font-family: 'Chewy', cursive;
-    color: var(--chocolate);
-    font-size: 1.3rem;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 0 var(--chocolate); /* Effet 3D */
+    gap: 10px;
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--neon-cyan);
+    border-radius: 4px;
+    padding: 8px 24px;
+    margin-bottom: 28px;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-cyan);
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3) inset;
 }
-.level-badge .badge-icon { font-size: 1.4rem; }
-.level-badge .level-num { color: var(--candy-pink); font-size: 1.5rem; }
+.level-badge .level-num {
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 0 0 8px var(--neon-cyan);
+}
 
-/* ── START BUTTON (Style Jelly Bean / Bonbon brillant) ── */
+/* ── START BUTTON (SYSTEM BOOT) ── */
 .btn-start {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    font-family: 'Chewy', cursive;
-    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
     color: #fff;
-    background: var(--candy-pink);
-    border: 4px solid var(--frosting);
-    border-radius: 50px;
-    padding: 16px 40px;
+    background: linear-gradient(90deg, rgba(176,38,255,0.6) 0%, rgba(0,243,255,0.6) 100%);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 4px;
+    padding: 16px 48px;
     cursor: pointer;
     width: 100%;
     max-width: 280px;
-    box-shadow: 
-        0 8px 0 var(--choco-dark),
-        0 15px 20px rgba(0,0,0,0.3),
-        inset 0 6px 0 rgba(255,255,255,0.4); /* Reflet brillant sur le haut */
-    transition: all 0.15s ease;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.4), inset 0 0 10px rgba(176, 38, 255, 0.5);
+    transition: all 0.3s ease;
     text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
 }
 .btn-start:hover {
-    transform: translateY(-4px);
-    box-shadow: 
-        0 12px 0 var(--choco-dark),
-        0 20px 25px rgba(0,0,0,0.3),
-        inset 0 6px 0 rgba(255,255,255,0.4);
+    background: linear-gradient(90deg, rgba(0,243,255,0.8) 0%, rgba(176,38,255,0.8) 100%);
+    box-shadow: 0 0 25px var(--neon-cyan), inset 0 0 15px var(--neon-purple);
+    border-color: var(--neon-purple);
+    transform: scale(1.02);
 }
-.btn-start:active { 
-    transform: translateY(4px); 
-    box-shadow: 
-        0 4px 0 var(--choco-dark),
-        0 5px 10px rgba(0,0,0,0.3),
-        inset 0 4px 0 rgba(255,255,255,0.4);
-}
-
-.btn-icon { font-size: 1.5rem; }
+.btn-start:active { transform: scale(0.98); }
 
 /* ── DECORATIVE BOTTOM ── */
 .panel-footer {
-    margin-top: 25px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--candy-pink);
+    margin-top: 28px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-/* ── CORNER SPRINKLES (Remplacent les ornements) ── */
+/* ── CORNER TECH ORNAMENTS ── */
 .ornament {
     position: absolute;
-    width: 16px; height: 16px;
-    border-radius: 50%; /* Confettis ronds */
+    width: 20px; height: 20px;
+    border-color: var(--neon-cyan);
+    border-style: solid;
+    box-shadow: 0 0 8px var(--neon-cyan);
 }
-.ornament.tl { top: 15px; left: 15px; background: var(--blueberry); }
-.ornament.tr { top: 15px; right: 15px; background: var(--lemon); }
-.ornament.bl { bottom: 15px; left: 15px; background: var(--candy-pink); }
-.ornament.br { bottom: 15px; right: 15px; background: var(--blueberry); }
+.ornament.tl { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.ornament.tr { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.ornament.bl { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; border-color: var(--neon-purple); box-shadow: 0 0 8px var(--neon-purple);}
+.ornament.br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; border-color: var(--neon-purple); box-shadow: 0 0 8px var(--neon-purple);}
 
 /* ── ANIMATIONS ── */
-@keyframes bounceIn {
-    0% { transform: scale(0.3); opacity: 0; }
-    50% { transform: scale(1.05); opacity: 1; }
-    70% { transform: scale(0.9); }
-    100% { transform: scale(1); }
+@keyframes glitchIn {
+    0% { opacity: 0; transform: translateY(-20px) skewX(10deg); filter: hue-rotate(90deg); }
+    50% { opacity: 0.8; transform: translateY(5px) skewX(-10deg); filter: hue-rotate(-90deg); }
+    100% { opacity: 1; transform: translateY(0) skewX(0); filter: hue-rotate(0); }
 }
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(50px); }
+    from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
-    .panel { padding: 30px 20px; border-radius: 30px; }
+    .panel { padding: 30px 20px; }
+    .game-title { font-size: 2.2rem; }
 }
 @media (max-width: 480px) {
-    .game-title { font-size: 3rem; }
-    .title-sub { font-size: 1rem; }
-    .btn-start { font-size: 1.3rem; padding: 14px 20px; }
-    .logo-emblem { width: 100px; height: 100px; }
+    .game-title { font-size: 2rem; letter-spacing: 0.1em; }
+    .title-sub { font-size: 0.9rem; }
+    .btn-start { font-size: 0.9rem; padding: 14px 20px; }
+    .logo-emblem { width: 90px; height: 90px; }
 }

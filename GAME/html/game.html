@@ -68,23 +68,24 @@
     // Script pour le jeu (8 thèmes : base, 1, 2, 3, 4, 5, 6, 7)
     function updateTheme() {
         let level = 1;
+         let themeNum = 1;
         if (localStorage.getItem('player')) {
             level = JSON.parse(localStorage.getItem('player')).level || 1;
         }
         
         // Calcule le palier (de 1 à 8)
-        let themeNum = Math.ceil(level / 50);
-        
+         if (localStorage.getItem('player') !=undefined) {
+        themeNum = JSON.parse(localStorage.getItem('player')).selectedTheme || 1;
+         }
         // Bloque au 8ème thème maximum (pour les niveaux 351 et plus)
         if (themeNum > 8) {
             themeNum = 8; 
         }
         
-        // Détermine le suffixe : vide pour le 1er, puis "1", "2"... jusqu'à "7"
-        let suffix = (themeNum === 1) ? "" : (themeNum - 1);
+     
         
         // Modifie le fichier CSS (Si suffix est vide, ça donnera "game.css")
-        document.getElementById('theme-css').href = "./../css/game" + suffix + ".css";
+        document.getElementById('theme-css').href = "./../css/game" + themeNum+ ".css";
     }
     
     // Exécute la fonction immédiatement

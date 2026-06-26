@@ -1,314 +1,294 @@
-/* --- style.css - THÈME JAPONAIS SAKURA --- */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+     :root {
+            --gold: #c9933a;
+            --gold-light: #f0c060;
+            --gold-dark: #8a5f1a;
+            --navy: #1a2340;
+            --navy-dark: #0d1520;
+            --parchment: #f5e8c8;
+            --parchment-dark: #d4c09a;
+            --wood: #5a3820;
+            --wood-light: #7a5030;
+            --cream: #faf3e0;
+            --red-life: #c0392b;
+            --green-win: #27ae60;
+            --shadow: rgba(0,0,0,0.6);
+        }
 
-:root {
-    /* Palette Sakura & Japon */
-    --sakura-light: #ffd1dc;    /* Rose très clair (pétales) */
-    --sakura-main: #ff8fab;     /* Rose vif */
-    --sakura-dark: #d65a7e;     /* Rose profond / Magenta */
-    --plum-dark: #2a1625;       /* Violet/Marron très sombre (nuit/bois) */
-    --plum-panel: #3a1f33;      /* Violet sombre pour les panneaux */
-    --lantern-glow: #ffb84d;    /* Orange/Doré des lanternes */
-    --paper: #fff5f8;           /* Blanc rosé (papier de riz) */
-    --paper-dark: #e8ccd5;      /* Papier vieilli */
-    --red-life: #e63946;        /* Rouge vif (Torii) */
-    --shadow: rgba(0,0,0,0.6);
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            font-family: 'Lora', serif;
+            background: var(--navy-dark);
+            overflow-x: hidden;
+            cursor: default;
+        }
 
-body {
-    min-height: 100vh;
-    font-family: 'Lora', serif;
-    background: var(--plum-dark);
-    overflow-x: hidden;
-    cursor: default;
-}
+        /* ── HERO BACKGROUND ── */
+        .hero-bg {
+            position: fixed;
+            inset: 0;
+            background-image: url('./../image/plan1.png');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.45) saturate(1.2);
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 60%, transparent 20%, rgba(10,15,30,0.75) 80%);
+            z-index: 1;
+        }
 
-/* ── HERO BACKGROUND ── */
-.hero-bg {
-    position: fixed;
-    inset: 0;
-    background-image: url('./../image/plan1.png'); /* Vérifiez votre chemin d'image */
-    background-size: cover;
-    background-position: center;
-    /* Un filtre plus doux pour laisser exploser les couleurs de l'image */
-    filter: brightness(0.6) saturate(1.1); 
-    z-index: 0;
-}
-.hero-overlay {
-    position: fixed;
-    inset: 0;
-    /* Dégradé prune vers transparent */
-    background: radial-gradient(ellipse at 50% 60%, transparent 20%, rgba(42, 22, 37, 0.8) 80%);
-    z-index: 1;
-}
+        /* ── MAIN CONTAINER ── */
+        .page-wrap {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
 
-/* ── MAIN CONTAINER ── */
-.page-wrap {
-    position: relative;
-    z-index: 2;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-}
+        /* ── TITLE CARD ── */
+        .title-card {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeDown 1s ease both;
+        }
 
-/* ── TITLE CARD ── */
-.title-card {
-    text-align: center;
-    margin-bottom: 40px;
-    animation: fadeDown 1s ease both;
-}
+        .logo-emblem {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 30px rgba(201,147,58,0.5), inset 0 0 20px rgba(0,0,0,0.4);
+            overflow: hidden;
+            background: var(--navy-dark);
+        }
+        .logo-emblem img { width: 100%; height: 100%; object-fit: cover; }
 
-.logo-emblem {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    border: 4px solid var(--sakura-main);
-    box-shadow: 0 0 30px rgba(255, 143, 171, 0.5), inset 0 0 20px rgba(0,0,0,0.4);
-    overflow: hidden;
-    background: var(--plum-dark);
-}
-.logo-emblem img { width: 100%; height: 100%; object-fit: cover; }
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--gold-light);
+            text-shadow: 0 0 20px rgba(201,147,58,0.6), 2px 4px 8px rgba(0,0,0,0.8);
+            letter-spacing: 0.12em;
+            line-height: 1;
+        }
 
-.game-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 900;
-    color: var(--sakura-light);
-    text-shadow: 0 0 20px rgba(255, 143, 171, 0.6), 2px 4px 8px rgba(0,0,0,0.8);
-    letter-spacing: 0.12em;
-    line-height: 1;
-}
+        .title-sub {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--parchment-dark);
+            margin-top: 8px;
+            letter-spacing: 0.08em;
+            opacity: 0.85;
+        }
 
-.title-sub {
-    font-family: 'Lora', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--paper-dark);
-    margin-top: 8px;
-    letter-spacing: 0.08em;
-    opacity: 0.85;
-}
+        .title-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin: 16px 0;
+        }
+        .title-divider span {
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+        .title-divider .fleur {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
 
-.title-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: center;
-    margin: 16px 0;
-}
-.title-divider span {
-    height: 1px;
-    width: 80px;
-    background: linear-gradient(to right, transparent, var(--sakura-main), transparent);
-}
-.title-divider .fleur {
-    color: var(--sakura-main);
-    font-size: 1.2rem;
-}
+        /* ── MAIN PANEL ── */
+        .panel {
+            background: linear-gradient(160deg, rgba(26,35,64,0.92) 0%, rgba(13,21,32,0.96) 100%);
+            border: 2px solid var(--gold-dark);
+            border-radius: 20px;
+            padding: 40px 50px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow:
+                0 0 0 1px rgba(201,147,58,0.15),
+                0 20px 60px rgba(0,0,0,0.7),
+                inset 0 1px 0 rgba(201,147,58,0.2);
+            text-align: center;
+            animation: fadeUp 1s 0.3s ease both;
+            position: relative;
+        }
 
-/* ── MAIN PANEL ── */
-.panel {
-    background: linear-gradient(160deg, rgba(58, 31, 51, 0.85) 0%, rgba(42, 22, 37, 0.95) 100%);
-    backdrop-filter: blur(8px);
-    border: 2px solid var(--sakura-dark);
-    border-radius: 20px;
-    padding: 40px 50px;
-    width: 100%;
-    max-width: 500px;
-    box-shadow:
-        0 0 0 1px rgba(255, 143, 171, 0.2),
-        0 20px 60px rgba(0,0,0,0.7),
-        inset 0 1px 0 rgba(255, 209, 220, 0.2);
-    text-align: center;
-    animation: fadeUp 1s 0.3s ease both;
-    position: relative;
-}
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 30px; right: 30px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+        }
 
-.panel::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 30px; right: 30px;
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--sakura-light), transparent);
-}
+        /* ── SCENE IMAGE ── */
+        .scene-frame {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--gold-dark);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.3);
+            margin-bottom: 32px;
+            position: relative;
+        }
+        .scene-frame img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .scene-frame:hover img { transform: scale(1.02); }
+        .scene-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(13,21,32,0.7) 100%);
+        }
 
-/* ── SCENE IMAGE ── */
-.scene-frame {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 2px solid var(--sakura-dark);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 20px rgba(255, 143, 171, 0.3);
-    margin-bottom: 32px;
-    position: relative;
-}
-.scene-frame img {
-    width: 100%;
-    display: block;
-    transition: transform 0.4s ease;
-}
-.scene-frame:hover img { transform: scale(1.02); }
-.scene-frame::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 50%, rgba(42, 22, 37, 0.5) 100%);
-}
+        /* ── LEVEL BADGE ── */
+        .level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(201,147,58,0.12);
+            border: 1px solid var(--gold-dark);
+            border-radius: 30px;
+            padding: 8px 20px;
+            margin-bottom: 28px;
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+        }
+        .level-badge .badge-icon { font-size: 1.1rem; }
+        .level-badge .level-num {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+        }
 
-/* ── LEVEL BADGE ── */
-.level-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 143, 171, 0.12);
-    border: 1px solid var(--sakura-dark);
-    border-radius: 30px;
-    padding: 8px 20px;
-    margin-bottom: 28px;
-    font-family: 'Cinzel', serif;
-    color: var(--sakura-light);
-    font-size: 0.95rem;
-    letter-spacing: 0.1em;
-}
-.level-badge .badge-icon { font-size: 1.1rem; }
-.level-badge .level-num {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--sakura-light);
-}
+        /* ── START BUTTON ── */
+        .btn-start {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--navy-dark);
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 16px 48px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 280px;
+            box-shadow:
+                0 4px 20px rgba(201,147,58,0.4),
+                0 1px 0 rgba(255,255,255,0.2) inset,
+                0 -2px 0 rgba(0,0,0,0.3) inset;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+        .btn-start::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.4s ease;
+        }
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201,147,58,0.55), 0 1px 0 rgba(255,255,255,0.2) inset;
+        }
+        .btn-start:hover::before { left: 100%; }
+        .btn-start:active { transform: translateY(0); }
 
-/* ── START BUTTON ── */
-.btn-start {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    font-family: 'Cinzel', serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--plum-dark);
-    /* Dégradé Rose vif vers Rose profond */
-    background: linear-gradient(135deg, var(--sakura-light) 0%, var(--sakura-main) 50%, var(--sakura-dark) 100%);
-    border: none;
-    border-radius: 50px;
-    padding: 16px 48px;
-    cursor: pointer;
-    width: 100%;
-    max-width: 280px;
-    box-shadow:
-        0 4px 20px rgba(255, 143, 171, 0.4),
-        0 1px 0 rgba(255,255,255,0.4) inset,
-        0 -2px 0 rgba(0,0,0,0.2) inset;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-}
-.btn-start::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.4s ease;
-}
-.btn-start:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255, 143, 171, 0.6), 0 1px 0 rgba(255,255,255,0.4) inset;
-}
-.btn-start:hover::before { left: 100%; }
-.btn-start:active { transform: translateY(0); }
+        .btn-icon { font-size: 1.3rem; }
 
-.btn-icon { font-size: 1.3rem; }
+        /* ── DECORATIVE BOTTOM ── */
+        .panel-footer {
+            margin-top: 28px;
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 0.82rem;
+            color: rgba(245,232,200,0.4);
+            letter-spacing: 0.05em;
+        }
 
-/* ── DECORATIVE BOTTOM ── */
-.panel-footer {
-    margin-top: 28px;
-    font-family: 'Lora', serif;
-    font-style: italic;
-    font-size: 0.82rem;
-    color: rgba(255, 245, 248, 0.4);
-    letter-spacing: 0.05em;
-}
+        /* ── CORNER ORNAMENTS ── */
+        .ornament {
+            position: absolute;
+            width: 28px; height: 28px;
+            border-color: var(--gold-dark);
+            border-style: solid;
+            opacity: 0.6;
+        }
+        .ornament.tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+        .ornament.tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+        .ornament.bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+        .ornament.br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
 
-/* ── CORNER ORNAMENTS ── */
-.ornament {
-    position: absolute;
-    width: 28px; height: 28px;
-    border-color: var(--sakura-dark);
-    border-style: solid;
-    opacity: 0.6;
-}
-.ornament.tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
-.ornament.tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
-.ornament.bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
-.ornament.br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+        /* ── ANIMATIONS ── */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 600px) {
-    .panel { padding: 28px 24px; }
-    .game-title { font-size: 2.4rem; }
-}
+        @media (max-width: 600px) {
+            .panel { padding: 28px 24px; }
+            .game-title { font-size: 2.4rem; }
+        }
+        
+        /* ── RESPONSIVE MOBILE (Téléphones) ── */
 @media (max-width: 480px) {
-    .panel { padding: 25px 15px; }
-    .game-title { font-size: 28px; letter-spacing: 0.08em; }
-    .title-sub { font-size: 0.85rem; }
-    .btn-start { font-size: 0.95rem; padding: 14px 30px; }
-    .level-badge { font-size: 0.85rem; padding: 6px 15px; }
-    .level-badge .level-num { font-size: 0.95rem; }
-}
+    .panel { 
+        padding: 25px 15px; 
+    }
+    
+    /* Réduit le titre principal en dessous de 30px (ici 28px) */
+    .game-title { 
+        font-size: 28px; 
+        letter-spacing: 0.08em; /* Réduit un peu l'espacement pour gagner de la place */
+    }
+    
+    /* Ajuste le sous-titre pour rester harmonieux */
+    .title-sub {
+        font-size: 0.85rem;
+    }
 
-/* =========================================================
-   CHANGEMENT DE POLICE - THÈME JAPONAIS (À METTRE À LA FIN)
-   ========================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Sawarabi+Mincho&display=swap');
-
-/* 1. Police de texte (Élégante et traditionnelle) pour les descriptions */
-body, 
-.title-sub, 
-.panel-footer, 
-.contenuedescription, 
-.modal-text {
-    font-family: 'Sawarabi Mincho', serif !important;
-}
-
-/* 2. Police Calligraphie (Style Pinceau) pour les Titres, Boutons et Lettres */
-.game-title, 
-.btn-start, 
-.level-badge, 
-.header-title, 
-.back-btn, 
-.btn-primary, 
-.btn-secondary, 
-.modal-title, 
-.letter, 
-.game div,
-#keyboard::before, 
-.lifebar::before, 
-.contenuedescription::before {
-    font-family: 'Kaushan Script', cursive !important;
-}
-
-/* Ajustement de taille spécifique pour les lettres du jeu avec cette nouvelle police */
-.game div {
-    font-size: clamp(1.2rem, 4.5vw, 2rem) !important;
-}
-.letter {
-    font-size: clamp(1rem, 2vw, 1.3rem) !important;
+    /* Ajuste la taille du bouton et de son texte */
+    .btn-start {
+        font-size: 0.95rem; /* Texte plus petit */
+        padding: 14px 30px;
+    }
+    
+    /* Ajuste le badge de niveau */
+    .level-badge {
+        font-size: 0.85rem;
+        padding: 6px 15px;
+    }
+    .level-badge .level-num {
+        font-size: 0.95rem;
+    }
 }

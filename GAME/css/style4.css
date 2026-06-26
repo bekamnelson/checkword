@@ -1,26 +1,26 @@
-/* --- style.css - THÈME SOUS-MARIN / OCÉAN MAGIQUE --- */
-@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Quicksand:wght@400;600;700&display=swap');
+/* --- style.css - THÈME CANDY / BONBONS --- */
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600;700;900&display=swap');
 
 :root {
-    /* Palette Océan & Corail */
-    --ocean-deep: #061539;       /* Bleu très sombre des abysses */
-    --ocean-mid: #104b82;        /* Bleu océan classique */
-    --ocean-light: #38b6ff;      /* Cyan / Eau claire */
-    --coral: #ff6b4a;            /* Orange/Corail des poissons et toits */
-    --sand: #e3c19b;             /* Jaune sable clair */
-    --wood-light: #8c5a35;       /* Bois clair des panneaux */
-    --wood-dark: #4a2c15;        /* Bois sombre */
-    --bubble-glow: rgba(56, 182, 255, 0.6);
+    /* Palette Bonbon & Chocolat */
+    --candy-pink: #ff6b9e;       /* Rose fraise/chewing-gum */
+    --candy-light: #ffb6c1;      /* Rose barbe à papa */
+    --frosting: #fff5f8;         /* Blanc crème / Glaçage */
+    --chocolate: #5c3a21;        /* Marron chocolat au lait */
+    --choco-dark: #3a2211;       /* Chocolat noir */
+    --blueberry: #4db8ff;        /* Bleu bonbon */
+    --lemon: #ffcf40;            /* Jaune citron */
+    --text-main: #5c3a21;        /* Texte marron pour la lisibilité */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     min-height: 100vh;
-    font-family: 'Quicksand', sans-serif;
-    background: var(--ocean-deep);
+    font-family: 'Nunito', sans-serif;
+    background: var(--candy-light);
     overflow-x: hidden;
-    color: white;
+    color: var(--text-main);
     cursor: default;
 }
 
@@ -31,15 +31,15 @@ body {
     background-image: url('./../image/plan4.png');
     background-size: cover;
     background-position: center;
-    /* On assombrit légèrement pour lire le texte, mais on garde la couleur */
-    filter: brightness(0.7) saturate(1.2);
+    /* On garde l'image lumineuse et saturée pour ce thème */
+    filter: brightness(0.8) contrast(1.1) saturate(1.2);
     z-index: 0;
 }
 .hero-overlay {
     position: fixed;
     inset: 0;
-    /* Dégradé simulant la profondeur : clair en haut, sombre en bas */
-    background: linear-gradient(to bottom, rgba(56, 182, 255, 0.1) 0%, rgba(6, 21, 57, 0.8) 100%);
+    /* Un voile rose très doux pour faire ressortir le texte */
+    background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 107, 158, 0.5) 100%);
     z-index: 1;
 }
 
@@ -59,141 +59,137 @@ body {
 .title-card {
     text-align: center;
     margin-bottom: 30px;
-    animation: float 4s ease-in-out infinite; /* Animation de flottaison sous-marine */
+    animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
 .logo-emblem {
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     margin: 0 auto 15px;
     border-radius: 50%;
-    /* Fait ressembler le logo à une grosse bulle d'eau ou un hublot */
-    border: 4px solid rgba(255,255,255,0.4);
-    box-shadow: 
-        0 0 20px var(--ocean-light), 
-        inset 0 0 20px var(--ocean-light),
-        inset 10px 10px 20px rgba(255,255,255,0.5);
+    /* Bordure façon donut ou sucette */
+    border: 8px solid var(--frosting);
+    box-shadow: 0 10px 25px rgba(255, 107, 158, 0.6), inset 0 0 15px rgba(0,0,0,0.2);
     overflow: hidden;
-    background: rgba(16, 75, 130, 0.5);
-    backdrop-filter: blur(5px);
+    background: var(--candy-pink);
 }
 .logo-emblem img { width: 100%; height: 100%; object-fit: cover; }
 
 .game-title {
-    font-family: 'Bubblegum Sans', cursive;
+    font-family: 'Chewy', cursive;
     font-size: clamp(3.5rem, 8vw, 6rem);
     color: #ffffff;
+    /* Effet texte 3D bulle/bonbon */
     text-shadow: 
-        0 4px 10px var(--ocean-mid),
-        0 0 20px var(--ocean-light);
+        3px 3px 0 var(--candy-pink),
+        -1px -1px 0 var(--candy-pink),
+        4px 4px 15px rgba(92, 58, 33, 0.5);
     letter-spacing: 0.05em;
     line-height: 1.1;
+    transform: rotate(-2deg); /* Petit côté fun */
 }
 
 .title-sub {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--sand);
+    font-weight: 800;
+    color: var(--chocolate);
+    background: var(--frosting);
+    padding: 4px 15px;
+    border-radius: 20px;
+    display: inline-block;
     margin-top: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.title-divider { display: none; } /* Caché pour plus de pureté visuelle */
+.title-divider { display: none; /* On cache le séparateur classique pour ce thème */ }
 
-/* ── MAIN PANEL (Panneau de Bois / Coffre) ── */
+/* ── MAIN PANEL (Plaque de Chocolat / Biscuit) ── */
 .panel {
-    background: var(--wood-light);
-    /* Texture striée pour imiter le bois */
-    background-image: repeating-linear-gradient(
-        0deg,
-        rgba(0,0,0,0.05),
-        rgba(0,0,0,0.05) 2px,
-        transparent 2px,
-        transparent 4px
-    );
-    border: 4px solid var(--wood-dark);
-    border-radius: 15px;
+    background: var(--frosting);
+    border: 6px solid var(--candy-pink);
+    border-radius: 40px; /* Très arrondi */
     padding: 40px 50px;
     width: 100%;
     max-width: 500px;
     box-shadow: 
-        0 15px 30px rgba(0,0,0,0.6),
-        inset 0 0 20px rgba(0,0,0,0.5);
+        0 15px 35px rgba(92, 58, 33, 0.4),
+        inset 0 -10px 0 rgba(255, 107, 158, 0.1); /* Effet d'épaisseur */
     text-align: center;
     animation: fadeUp 1s 0.3s ease both;
     position: relative;
 }
 
-/* ── SCENE IMAGE (Hublot) ── */
+/* ── SCENE IMAGE ── */
 .scene-frame {
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
-    border: 3px solid var(--sand);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border: 4px solid var(--chocolate);
+    box-shadow: 0 8px 20px rgba(92, 58, 33, 0.3);
     margin-bottom: 25px;
 }
 .scene-frame img {
     width: 100%;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s ease;
 }
-.scene-frame:hover img { transform: scale(1.05); filter: contrast(1.2); }
+.scene-frame:hover img { transform: scale(1.05); }
 
-/* ── LEVEL BADGE (Étoile de mer / Coquillage) ── */
+/* ── LEVEL BADGE (Style Pastille) ── */
 .level-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid var(--sand);
-    border-radius: 30px;
-    padding: 8px 20px;
+    background: var(--lemon);
+    border: 3px solid var(--chocolate);
+    border-radius: 50px;
+    padding: 10px 25px;
     margin-bottom: 25px;
-    font-family: 'Bubblegum Sans', cursive;
-    color: var(--sand);
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
-    backdrop-filter: blur(4px);
+    font-family: 'Chewy', cursive;
+    color: var(--chocolate);
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 0 var(--chocolate); /* Effet 3D */
 }
-.level-badge .badge-icon { font-size: 1.3rem; }
-.level-badge .level-num { color: #fff; font-size: 1.4rem; }
+.level-badge .badge-icon { font-size: 1.4rem; }
+.level-badge .level-num { color: var(--candy-pink); font-size: 1.5rem; }
 
-/* ── START BUTTON (Bouton Corail) ── */
+/* ── START BUTTON (Style Jelly Bean / Bonbon brillant) ── */
 .btn-start {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    font-family: 'Bubblegum Sans', cursive;
-    font-size: 1.6rem;
+    font-family: 'Chewy', cursive;
+    font-size: 1.5rem;
     color: #fff;
-    background: linear-gradient(180deg, #ff8c73 0%, var(--coral) 100%);
-    border: 2px solid #ffb2a0;
-    border-radius: 40px;
-    padding: 14px 40px;
+    background: var(--candy-pink);
+    border: 4px solid var(--frosting);
+    border-radius: 50px;
+    padding: 16px 40px;
     cursor: pointer;
     width: 100%;
     max-width: 280px;
     box-shadow: 
-        0 6px 0 #cc4629, /* Épaisseur du bouton */
-        0 15px 20px rgba(0,0,0,0.4);
+        0 8px 0 var(--choco-dark),
+        0 15px 20px rgba(0,0,0,0.3),
+        inset 0 6px 0 rgba(255,255,255,0.4); /* Reflet brillant sur le haut */
     transition: all 0.15s ease;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 .btn-start:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: 
-        0 8px 0 #cc4629,
-        0 20px 25px rgba(0,0,0,0.5);
-    filter: brightness(1.1);
+        0 12px 0 var(--choco-dark),
+        0 20px 25px rgba(0,0,0,0.3),
+        inset 0 6px 0 rgba(255,255,255,0.4);
 }
 .btn-start:active { 
-    transform: translateY(6px); 
-    box-shadow: 0 0px 0 #cc4629, 0 5px 10px rgba(0,0,0,0.4);
+    transform: translateY(4px); 
+    box-shadow: 
+        0 4px 0 var(--choco-dark),
+        0 5px 10px rgba(0,0,0,0.3),
+        inset 0 4px 0 rgba(255,255,255,0.4);
 }
 
 .btn-icon { font-size: 1.5rem; }
@@ -201,42 +197,42 @@ body {
 /* ── DECORATIVE BOTTOM ── */
 .panel-footer {
     margin-top: 25px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--candy-pink);
 }
 
-/* ── CORNER BUBBLES (Remplacent les ornements) ── */
+/* ── CORNER SPRINKLES (Remplacent les ornements) ── */
 .ornament {
     position: absolute;
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0.2) 60%, transparent);
-    border: 1px solid rgba(255,255,255,0.5);
-    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    width: 16px; height: 16px;
+    border-radius: 50%; /* Confettis ronds */
 }
-.ornament.tl { top: -10px; left: -10px; width: 30px; height: 30px; }
-.ornament.tr { top: -5px; right: -10px; width: 20px; height: 20px; }
-.ornament.bl { bottom: -10px; left: -5px; width: 25px; height: 25px; }
-.ornament.br { bottom: -5px; right: -15px; width: 15px; height: 15px; }
+.ornament.tl { top: 15px; left: 15px; background: var(--blueberry); }
+.ornament.tr { top: 15px; right: 15px; background: var(--lemon); }
+.ornament.bl { bottom: 15px; left: 15px; background: var(--candy-pink); }
+.ornament.br { bottom: 15px; right: 15px; background: var(--blueberry); }
 
 /* ── ANIMATIONS ── */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
 }
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(50px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
-    .panel { padding: 30px 20px; }
+    .panel { padding: 30px 20px; border-radius: 30px; }
 }
 @media (max-width: 480px) {
     .game-title { font-size: 3rem; }
     .title-sub { font-size: 1rem; }
-    .btn-start { font-size: 1.3rem; padding: 12px 20px; }
+    .btn-start { font-size: 1.3rem; padding: 14px 20px; }
+    .logo-emblem { width: 100px; height: 100px; }
 }

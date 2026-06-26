@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckWord - Thèmes</title>
+    <link rel="stylesheet" href="../css/game1.css" id="theme-css">
+    <link rel="stylesheet" href="./../css/theme.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="game-wrap">
+        <header class="game-header">
+            <a href="../index2.html" class="back-btn">← Retour</a>
+            <div class="header-title">⚜ Boutique de Thèmes</div>
+            <div class="level-indicator" id="display-level">Niveau : 1</div>
+        </header>
+
+        <div class="bigcontainer" style="width: 90%; max-width: 800px;">
+            <div class="ornament tl"></div><div class="ornament tr"></div>
+            <div class="ornament bl"></div><div class="ornament br"></div>
+            
+            <h2 style="color: var(--gold-light); text-align: center; font-family: 'Cinzel', serif;">Choisissez votre Décor</h2>
+            <p style="color: white; text-align: center;">Un nouveau thème se débloque tous les 50 niveaux !</p>
+            
+            <div class="themes-grid" id="themes-container">
+                <!-- Les thèmes seront générés ici par JS -->
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/theme.js"></script>
+    <script>
+        // Applique le fond d'écran actuel
+        const currentTheme = localStorage.getItem("selectedTheme") || 1;
+        document.querySelector(".hero-bg").style.backgroundImage = `url('../image/plan${currentTheme}.png')`;
+    </script>
+</body>
+</html>

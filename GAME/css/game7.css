@@ -1,27 +1,25 @@
-/* --- game.css - THÈME URBAIN JAPONAIS / CRÉPUSCULE BÉTON --- */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Sawarabi+Gothic&display=swap');
+/* --- game.css - THÈME SCI-FI / LABO HOLOGRAMME --- */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&family=Share+Tech+Mono&display=swap');
 
 :root {
-    --sun-gold: #ffb74d;
-    --sun-deep: #e65100;
-    --concrete-dark: #1e2226;
-    --concrete-panel: rgba(38, 44, 51, 0.95);
-    --poster-green: #385c45;
-    --poster-paper: #f4f1ea;
-    --text-light: #f5f5f5;
-    --text-muted: #9aa0a6;
-    --red-bin: #d32f2f;
-    --letter-bg: rgba(255, 255, 255, 0.05);
+    --holo-cyan: #00e5ff;
+    --holo-blue: #0051ff;
+    --lab-dark: #020813;
+    --glass-bg: rgba(6, 15, 30, 0.85);
+    --text-main: #e0f7fa;
+    --text-muted: #80deea;
+    --alert-red: #ff1744;
+    --letter-bg: rgba(0, 229, 255, 0.05);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     min-height: 100vh;
-    font-family: 'Noto Sans', sans-serif;
-    background: var(--concrete-dark);
+    font-family: 'Exo 2', sans-serif;
+    background: var(--lab-dark);
     overflow-x: hidden;
-    color: var(--text-light);
+    color: var(--text-main);
 }
 
 /* ── BACKGROUNDS ── */
@@ -31,14 +29,13 @@ body {
     background-image: url('./../image/plan7.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.6) contrast(1.1); /* Plus sombre en jeu */
+    filter: brightness(0.5) contrast(1.2);
     z-index: 0;
 }
 .hero-overlay {
     position: fixed;
     inset: 0;
-    /* Ombre urbaine avec légère touche dorée au centre */
-    background: radial-gradient(ellipse at 50% 40%, rgba(255, 183, 77, 0.05) 0%, rgba(30, 34, 38, 0.9) 100%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(0, 81, 255, 0.15) 0%, rgba(2, 8, 19, 0.9) 100%);
     z-index: 1;
 }
 
@@ -53,7 +50,7 @@ body {
     padding: 20px 16px 30px;
 }
 
-/* ── HEADER ── */
+/* ── HEADER (HUD Top Bar) ── */
 .game-header {
     width: 100%;
     max-width: 700px;
@@ -61,52 +58,64 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    background: rgba(0,0,0,0.5);
-    padding: 12px 20px;
-    border-radius: 4px;
-    border-left: 4px solid var(--sun-gold); /* Rappel urbain */
+    background: rgba(0, 229, 255, 0.05);
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--holo-cyan);
+    backdrop-filter: blur(5px);
 }
 
 .back-btn {
-    font-family: 'Sawarabi Gothic', sans-serif;
-    font-weight: 700;
+    font-family: 'Share Tech Mono', monospace;
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: var(--holo-cyan);
     text-decoration: none;
-    transition: all 0.2s;
+    text-transform: uppercase;
 }
-.back-btn:hover { color: var(--sun-gold); }
+.back-btn::before { content: '< '; }
+.back-btn:hover { color: #fff; text-shadow: 0 0 10px var(--holo-cyan); }
 
 .header-title {
-    font-family: 'Sawarabi Gothic', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--text-light);
-    letter-spacing: 0.05em;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.4rem;
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px var(--holo-blue);
 }
 
 .level-indicator {
-    font-weight: 700;
+    font-family: 'Share Tech Mono', monospace;
     font-size: 0.9rem;
-    color: var(--sun-gold);
-    background: rgba(255, 183, 77, 0.1);
-    padding: 4px 10px;
-    border-radius: 4px;
+    color: var(--text-muted);
 }
 
 /* ── MAIN PANEL (.bigcontainer) ── */
 .bigcontainer {
-    background: var(--concrete-panel);
-    backdrop-filter: blur(10px);
-    border: 1px solid #454d55;
-    border-top: 6px solid var(--poster-green);
-    border-radius: 4px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 229, 255, 0.3);
     width: 100%;
     max-width: 700px;
     padding: 30px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(0, 81, 255, 0.1);
     position: relative;
+    /* Quadrillage Blueprint */
+    background-image: 
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    background-size: 15px 15px;
 }
+
+/* Ornements HUD du Panel */
+.ornament {
+    position: absolute;
+    width: 15px; height: 15px;
+    border-color: var(--holo-cyan);
+    border-style: solid;
+}
+.ornament.tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.ornament.tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+.ornament.bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+.ornament.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
 
 .container {
     display: flex;
@@ -115,71 +124,63 @@ body {
     width: 100%;
 }
 
-/* ── INDICE (Affiche municipale en papier collée) ── */
+/* ── INDICE (Console Data) ── */
 .contenuedescription {
     text-align: left;
-    background: var(--poster-paper);
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 20px 24px 20px 24px;
+    background: rgba(0, 0, 0, 0.6);
+    border-left: 3px solid var(--holo-cyan);
+    padding: 15px 20px;
     margin: 0 auto 28px auto;
     position: relative;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333; /* Texte sombre sur papier clair */
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    color: #fff;
     width: 100%;
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.5);
-    /* Effet papier légèrement jauni */
-    background-image: radial-gradient(circle, transparent 80%, rgba(0,0,0,0.03) 100%);
+    box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.1);
 }
 
 .contenuedescription::before {
-    content: 'INFORMATION';
+    content: '> QUERY.DATA:';
     display: block;
-    font-family: 'Sawarabi Gothic', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--poster-green);
-    margin-bottom: 8px;
-    border-bottom: 2px solid var(--poster-green);
-    padding-bottom: 4px;
+    font-size: 0.8rem;
+    color: var(--holo-cyan);
+    margin-bottom: 5px;
 }
 
-/* ── LIFE BAR (Lumières Rouges style poubelle) ── */
+/* ── LIFE BAR (Cellules d'Énergie) ── */
 .lifebar {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 30px;
 }
 
 .lifebar::before {
-    content: 'CHANCES';
-    font-family: 'Sawarabi Gothic', sans-serif;
+    content: 'SYS.POWER:';
+    font-family: 'Share Tech Mono', monospace;
     font-size: 0.8rem;
-    font-weight: 700;
     color: var(--text-muted);
     margin-right: 5px;
 }
 
 .life {
-    width: 16px;
-    height: 16px;
-    border-radius: 2px; /* Carré */
-    background: #333;
-    border: 1px solid #555;
+    width: 20px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.2);
     transition: all 0.3s ease;
+    transform: skewX(-15deg); /* Style Tech */
 }
 
-/* Vies pleines = Rouge comme la poubelle "Combustible" */
+/* Vies pleines = Batteries chargées */
 .red {
-    background: var(--red-bin);
-    border-color: #ff5252;
-    box-shadow: 0 0 10px rgba(211, 47, 47, 0.8);
+    background: var(--holo-cyan);
+    border-color: #fff;
+    box-shadow: 0 0 10px var(--holo-cyan);
 }
 
-/* ── WORD DISPLAY (Blocs d'Asphalte Mouillé) ── */
+/* ── WORD DISPLAY (Séquence ADN / Lettres) ── */
 .game {
     display: flex;
     justify-content: center;
@@ -191,51 +192,49 @@ body {
 }
 
 .game div {
-    flex: 0 1 54px;
-    height: clamp(45px, 10vw, 65px);
-    background: #1e2226; /* Noir asphalte */
-    border: 1px solid #454d55;
-    border-radius: 4px;
+    flex: 0 1 50px;
+    height: clamp(45px, 10vw, 60px);
+    background: rgba(0, 81, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Sawarabi Gothic', sans-serif;
+    font-family: 'Share Tech Mono', monospace;
     font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 900;
-    color: var(--text-light);
+    color: #fff;
+    text-shadow: 0 0 10px var(--holo-cyan);
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
-    /* Reflet d'eau au sommet du bloc */
-    box-shadow: inset 0 2px 5px rgba(255,255,255,0.1);
 }
 
 .game div .baredeco {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 4px;
-    background: var(--sun-gold); /* Reflet du soleil couchant */
+    height: 2px;
+    background: var(--holo-cyan);
     margin: 0;
-    box-shadow: 0 -2px 10px rgba(255, 183, 77, 0.5);
+    box-shadow: 0 -2px 10px var(--holo-cyan);
 }
 
-/* ── KEYBOARD (Pavés urbains) ── */
+/* ── KEYBOARD (Terminal Tactile) ── */
 #keyboard {
     margin-top: 10px;
     width: 100%;
 }
 
 #keyboard::before {
-    content: 'ENTRÉE DES DONNÉES';
+    content: 'INPUT SEQUENCE:';
     display: block;
-    font-family: 'Sawarabi Gothic', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
     color: var(--text-muted);
     text-align: left;
     margin-bottom: 12px;
+    border-bottom: 1px dashed rgba(0, 229, 255, 0.2);
+    padding-bottom: 5px;
 }
 
 .keyboard2 {
@@ -247,41 +246,38 @@ body {
 
 .letter {
     width: clamp(34px, 7vw, 46px);
-    height: clamp(40px, 7vw, 50px);
-    background: #2a3036;
-    border: 1px solid #454d55;
-    border-radius: 4px;
+    height: clamp(38px, 7vw, 48px);
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Share Tech Mono', monospace;
     font-size: clamp(1rem, 2vw, 1.2rem);
-    font-weight: 700;
-    color: var(--text-light);
+    color: var(--holo-cyan);
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.1s ease;
     user-select: none;
     text-transform: uppercase;
-    /* Effet touche physique */
-    box-shadow: 0 4px 0 #15181b;
 }
 
 .letter:hover {
-    background: var(--sun-deep);
-    border-color: var(--sun-gold);
+    background: rgba(0, 229, 255, 0.2);
+    border-color: var(--holo-cyan);
     color: #fff;
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #15181b, 0 0 10px rgba(230, 81, 0, 0.4);
+    text-shadow: 0 0 5px #fff;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
 }
 
 .letter:active { 
-    transform: translateY(4px);
-    box-shadow: 0 0 0 #15181b;
+    transform: scale(0.95);
+    background: var(--holo-cyan);
+    color: #000;
 }
 
-/* ── MODALS (Affiches d'Alerte) ── */
+/* ── MODALS (Alerte Système) ── */
 .cache {
-    filter: blur(6px) grayscale(30%);
+    filter: blur(8px) sepia(0.5) hue-rotate(180deg);
     pointer-events: none;
 }
 
@@ -290,41 +286,41 @@ body {
     position: fixed;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--poster-paper); /* Fond papier clair */
-    border: 2px solid #ccc;
-    border-top: 10px solid;
-    border-radius: 2px;
+    background: rgba(2, 8, 19, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--holo-cyan);
+    border-top: 4px solid var(--holo-cyan);
     padding: 40px 30px;
     max-width: 400px;
     width: 90%;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    box-shadow: 0 0 50px rgba(0,0,0,1), 0 0 20px rgba(0, 229, 255, 0.2);
     z-index: 100;
 }
 
-/* Couleur de la barre du haut selon Victoire ou Défaite */
-#boite { border-top-color: var(--red-bin); } /* Défaite */
-#boite2 { border-top-color: var(--sun-gold); } /* Victoire */
+#boite { border-top-color: var(--alert-red); border-color: var(--alert-red); box-shadow: 0 0 30px rgba(255,23,68,0.2); }
 
 .modal-icon {
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 10px;
     display: block;
+    filter: grayscale(100%) brightness(200%) drop-shadow(0 0 10px var(--holo-cyan));
 }
+#boite .modal-icon { filter: grayscale(100%) brightness(200%) drop-shadow(0 0 10px var(--alert-red)); }
 
 .modal-title {
-    font-family: 'Sawarabi Gothic', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: #212121;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.6rem;
+    color: var(--holo-cyan);
     margin-bottom: 10px;
+    text-transform: uppercase;
 }
+#boite .modal-title { color: var(--alert-red); }
 
 .modal-text {
-    font-size: 1.1rem;
-    color: #424242;
+    font-size: 1rem;
+    color: var(--text-main);
     margin-bottom: 30px;
-    font-weight: 600;
 }
 
 .boite .button {
@@ -338,33 +334,33 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Sawarabi Gothic', sans-serif;
+    font-family: 'Share Tech Mono', monospace;
     font-size: 1rem;
-    font-weight: 700;
-    padding: 12px 25px;
-    border-radius: 2px;
-    border: none;
+    padding: 10px 20px;
+    border: 1px solid;
     cursor: pointer;
     transition: all 0.2s ease;
     text-transform: uppercase;
 }
 
 .btn-primary {
-    background: #212121;
-    color: #fff;
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--holo-cyan);
+    border-color: var(--holo-cyan);
 }
-.btn-primary:hover { background: var(--sun-deep); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.btn-primary:hover { background: var(--holo-cyan); color: #000; box-shadow: 0 0 15px var(--holo-cyan); }
 
 .btn-secondary {
-    background: #e0e0e0;
-    color: #424242;
+    background: transparent;
+    color: var(--text-muted);
+    border-color: var(--text-muted);
 }
-.btn-secondary:hover { background: #bdbdbd; }
+.btn-secondary:hover { color: #fff; border-color: #fff; }
 
 /* ── RESPONSIVE MOBILE ── */
 @media (max-width: 500px) {
     .game-wrap { padding: 15px 10px; }
     .bigcontainer { flex: 1; padding: 20px 15px; }
-    .header-title { font-size: 1.3rem; }
+    .header-title { font-size: 1.2rem; }
     .boite { padding: 30px 20px; }
 }

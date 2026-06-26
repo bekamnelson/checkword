@@ -1,25 +1,26 @@
-/* --- style.css - THÈME RUE JAPONAISE / CRÉPUSCULE ANIME --- */
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap');
+/* --- style.css - THÈME SOUS-MARIN / OCÉAN MAGIQUE --- */
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Quicksand:wght@400;600;700&display=swap');
 
 :root {
-    /* Palette Sunset Anime */
-    --sunset-gold: #ffca28;      /* Lumière du soleil */
-    --sunset-orange: #f57c00;    /* Ciel orangé */
-    --dusk-shadow: #2d241f;      /* Ombres chaudes (bois/asphalte) */
-    --panel-bg: rgba(35, 28, 25, 0.85); /* Fond des menus */
-    --sign-green: #436644;       /* Vert des panneaux de la rue */
-    --text-light: #fff8e1;       /* Texte blanc cassé (chaud) */
-    --text-muted: #bcaaa4;       /* Texte secondaire */
+    /* Palette Océan & Corail */
+    --ocean-deep: #061539;       /* Bleu très sombre des abysses */
+    --ocean-mid: #104b82;        /* Bleu océan classique */
+    --ocean-light: #38b6ff;      /* Cyan / Eau claire */
+    --coral: #ff6b4a;            /* Orange/Corail des poissons et toits */
+    --sand: #e3c19b;             /* Jaune sable clair */
+    --wood-light: #8c5a35;       /* Bois clair des panneaux */
+    --wood-dark: #4a2c15;        /* Bois sombre */
+    --bubble-glow: rgba(56, 182, 255, 0.6);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     min-height: 100vh;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    background: var(--dusk-shadow);
+    font-family: 'Quicksand', sans-serif;
+    background: var(--ocean-deep);
     overflow-x: hidden;
-    color: var(--text-light);
+    color: white;
     cursor: default;
 }
 
@@ -27,17 +28,18 @@ body {
 .hero-bg {
     position: fixed;
     inset: 0;
-    background-image: url('./../image/plan5.png'); /* Pensez à mettre plan4.png si besoin */
+    background-image: url('./../image/plan5.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.8) contrast(1.1); /* Laisse les couleurs éclater */
+    /* On assombrit légèrement pour lire le texte, mais on garde la couleur */
+    filter: brightness(0.7) saturate(1.2);
     z-index: 0;
 }
 .hero-overlay {
     position: fixed;
     inset: 0;
-    /* Dégradé imitant la fin du jour : transparent en haut, sombre en bas */
-    background: linear-gradient(to bottom, rgba(255, 202, 40, 0.05) 0%, rgba(45, 36, 31, 0.9) 100%);
+    /* Dégradé simulant la profondeur : clair en haut, sombre en bas */
+    background: linear-gradient(to bottom, rgba(56, 182, 255, 0.1) 0%, rgba(6, 21, 57, 0.8) 100%);
     z-index: 1;
 }
 
@@ -56,142 +58,176 @@ body {
 /* ── TITLE CARD ── */
 .title-card {
     text-align: center;
-    margin-bottom: 35px;
-    animation: fadeInDown 1s ease both;
+    margin-bottom: 30px;
+    animation: float 4s ease-in-out infinite; /* Animation de flottaison sous-marine */
 }
 
 .logo-emblem {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto 15px;
-    border-radius: 20px; /* Forme de panneau japonais */
-    border: 3px solid var(--sunset-gold);
-    box-shadow: 0 0 20px rgba(255, 202, 40, 0.4), inset 0 0 15px rgba(0,0,0,0.5);
+    border-radius: 50%;
+    /* Fait ressembler le logo à une grosse bulle d'eau ou un hublot */
+    border: 4px solid rgba(255,255,255,0.4);
+    box-shadow: 
+        0 0 20px var(--ocean-light), 
+        inset 0 0 20px var(--ocean-light),
+        inset 10px 10px 20px rgba(255,255,255,0.5);
     overflow: hidden;
-    background: var(--dusk-shadow);
+    background: rgba(16, 75, 130, 0.5);
+    backdrop-filter: blur(5px);
 }
 .logo-emblem img { width: 100%; height: 100%; object-fit: cover; }
 
 .game-title {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: clamp(2.8rem, 7vw, 5rem);
-    font-weight: 900;
-    color: var(--text-light);
-    /* Lueur dorée comme le soleil couchant */
-    text-shadow: 0 0 15px var(--sunset-orange), 0 5px 10px rgba(0,0,0,0.8);
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    color: #ffffff;
+    text-shadow: 
+        0 4px 10px var(--ocean-mid),
+        0 0 20px var(--ocean-light);
     letter-spacing: 0.05em;
     line-height: 1.1;
 }
 
 .title-sub {
-    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: var(--sunset-gold);
+    color: var(--sand);
     margin-top: 10px;
     letter-spacing: 0.1em;
-    background: rgba(0,0,0,0.4);
-    padding: 5px 15px;
-    border-radius: 10px;
-    display: inline-block;
-    backdrop-filter: blur(2px);
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
-.title-divider { display: none; }
+.title-divider { display: none; } /* Caché pour plus de pureté visuelle */
 
-/* ── MAIN PANEL (Mur en bois / Panneau d'affichage) ── */
+/* ── MAIN PANEL (Panneau de Bois / Coffre) ── */
 .panel {
-    background: var(--panel-bg);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--sunset-orange);
-    border-top: 6px solid var(--sign-green); /* Rappel du toit vert du local poubelle */
-    border-radius: 12px;
+    background: var(--wood-light);
+    /* Texture striée pour imiter le bois */
+    background-image: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.05),
+        rgba(0,0,0,0.05) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    border: 4px solid var(--wood-dark);
+    border-radius: 15px;
     padding: 40px 50px;
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    box-shadow: 
+        0 15px 30px rgba(0,0,0,0.6),
+        inset 0 0 20px rgba(0,0,0,0.5);
     text-align: center;
-    animation: fadeInUp 1s 0.3s ease both;
+    animation: fadeUp 1s 0.3s ease both;
     position: relative;
 }
 
-/* ── SCENE IMAGE ── */
+/* ── SCENE IMAGE (Hublot) ── */
 .scene-frame {
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    border: 3px solid var(--sand);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     margin-bottom: 25px;
 }
 .scene-frame img {
     width: 100%;
     display: block;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
 }
-.scene-frame:hover img { transform: scale(1.03); filter: brightness(1.1); }
+.scene-frame:hover img { transform: scale(1.05); filter: contrast(1.2); }
 
-/* ── LEVEL BADGE (Style Panneau de rue) ── */
+/* ── LEVEL BADGE (Étoile de mer / Coquillage) ── */
 .level-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--sign-green);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 5px;
-    padding: 8px 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--sand);
+    border-radius: 30px;
+    padding: 8px 20px;
     margin-bottom: 25px;
-    color: var(--text-light);
-    font-size: 1.1rem;
-    font-weight: 700;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    letter-spacing: 0.05em;
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--sand);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    backdrop-filter: blur(4px);
 }
-.level-badge .level-num { color: var(--sunset-gold); font-size: 1.3rem; }
+.level-badge .badge-icon { font-size: 1.3rem; }
+.level-badge .level-num { color: #fff; font-size: 1.4rem; }
 
-/* ── START BUTTON (Lumière de lampadaire) ── */
+/* ── START BUTTON (Bouton Corail) ── */
 .btn-start {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: #3e2723;
-    background: linear-gradient(135deg, var(--sunset-gold) 0%, var(--sunset-orange) 100%);
-    border: none;
-    border-radius: 8px;
-    padding: 15px 40px;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.6rem;
+    color: #fff;
+    background: linear-gradient(180deg, #ff8c73 0%, var(--coral) 100%);
+    border: 2px solid #ffb2a0;
+    border-radius: 40px;
+    padding: 14px 40px;
     cursor: pointer;
     width: 100%;
     max-width: 280px;
-    box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4), inset 0 2px 0 rgba(255,255,255,0.4);
-    transition: all 0.2s ease;
+    box-shadow: 
+        0 6px 0 #cc4629, /* Épaisseur du bouton */
+        0 15px 20px rgba(0,0,0,0.4);
+    transition: all 0.15s ease;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
 }
 .btn-start:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(245, 124, 0, 0.6), inset 0 2px 0 rgba(255,255,255,0.4);
+    box-shadow: 
+        0 8px 0 #cc4629,
+        0 20px 25px rgba(0,0,0,0.5);
     filter: brightness(1.1);
 }
-.btn-start:active { transform: translateY(2px); box-shadow: 0 2px 5px rgba(245, 124, 0, 0.4); }
+.btn-start:active { 
+    transform: translateY(6px); 
+    box-shadow: 0 0px 0 #cc4629, 0 5px 10px rgba(0,0,0,0.4);
+}
 
-.btn-icon { font-size: 1.4rem; }
+.btn-icon { font-size: 1.5rem; }
 
 /* ── DECORATIVE BOTTOM ── */
 .panel-footer {
     margin-top: 25px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.6);
 }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to   { opacity: 1; transform: translateY(0); }
+/* ── CORNER BUBBLES (Remplacent les ornements) ── */
+.ornament {
+    position: absolute;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0.2) 60%, transparent);
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
+.ornament.tl { top: -10px; left: -10px; width: 30px; height: 30px; }
+.ornament.tr { top: -5px; right: -10px; width: 20px; height: 20px; }
+.ornament.bl { bottom: -10px; left: -5px; width: 25px; height: 25px; }
+.ornament.br { bottom: -5px; right: -15px; width: 15px; height: 15px; }
+
+/* ── ANIMATIONS ── */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -200,7 +236,7 @@ body {
     .panel { padding: 30px 20px; }
 }
 @media (max-width: 480px) {
-    .game-title { font-size: 2.5rem; }
-    .title-sub { font-size: 0.95rem; }
-    .btn-start { font-size: 1.1rem; padding: 14px 20px; }
+    .game-title { font-size: 3rem; }
+    .title-sub { font-size: 1rem; }
+    .btn-start { font-size: 1.3rem; padding: 12px 20px; }
 }

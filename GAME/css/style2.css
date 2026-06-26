@@ -1,25 +1,27 @@
-/* --- style.css - THÈME CYBERPUNK / NÉON --- */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+/* --- style.css - THÈME JAPONAIS SAKURA --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 
 :root {
-    /* Palette Cyberpunk */
-    --neon-cyan: #00f3ff;
-    --neon-purple: #b026ff;
-    --neon-pink: #ff007f;
-    --dark-bg: #050510;
-    --panel-bg: rgba(13, 10, 30, 0.75);
-    --text-main: #e0eaff;
-    --text-muted: #8a99c0;
+    /* Palette Sakura & Japon */
+    --sakura-light: #ffd1dc;    /* Rose très clair (pétales) */
+    --sakura-main: #ff8fab;     /* Rose vif */
+    --sakura-dark: #d65a7e;     /* Rose profond / Magenta */
+    --plum-dark: #2a1625;       /* Violet/Marron très sombre (nuit/bois) */
+    --plum-panel: #3a1f33;      /* Violet sombre pour les panneaux */
+    --lantern-glow: #ffb84d;    /* Orange/Doré des lanternes */
+    --paper: #fff5f8;           /* Blanc rosé (papier de riz) */
+    --paper-dark: #e8ccd5;      /* Papier vieilli */
+    --red-life: #e63946;        /* Rouge vif (Torii) */
+    --shadow: rgba(0,0,0,0.6);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     min-height: 100vh;
-    font-family: 'Rajdhani', sans-serif;
-    background: var(--dark-bg);
+    font-family: 'Lora', serif;
+    background: var(--plum-dark);
     overflow-x: hidden;
-    color: var(--text-main);
     cursor: default;
 }
 
@@ -27,17 +29,18 @@ body {
 .hero-bg {
     position: fixed;
     inset: 0;
-    background-image: url('./../image/plan2.png');
+    background-image: url('./../image/plan2.png'); /* Vérifiez votre chemin d'image */
     background-size: cover;
     background-position: center;
-    filter: brightness(0.7) contrast(1.1);
+    /* Un filtre plus doux pour laisser exploser les couleurs de l'image */
+    filter: brightness(0.6) saturate(1.1); 
     z-index: 0;
 }
 .hero-overlay {
     position: fixed;
     inset: 0;
-    /* Un voile sombre bleu/violet pour faire ressortir l'interface */
-    background: radial-gradient(circle at 50% 50%, rgba(10, 5, 25, 0.2) 0%, rgba(5, 2, 15, 0.8) 100%);
+    /* Dégradé prune vers transparent */
+    background: radial-gradient(ellipse at 50% 60%, transparent 20%, rgba(42, 22, 37, 0.8) 80%);
     z-index: 1;
 }
 
@@ -57,191 +60,200 @@ body {
 .title-card {
     text-align: center;
     margin-bottom: 40px;
-    animation: glitchIn 1s ease both;
+    animation: fadeDown 1s ease both;
 }
 
 .logo-emblem {
     width: 120px;
     height: 120px;
     margin: 0 auto 20px;
-    border-radius: 15px; /* Forme plus tech (carré arrondi) */
-    border: 2px solid var(--neon-cyan);
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.5), inset 0 0 15px rgba(0, 243, 255, 0.3);
+    border-radius: 50%;
+    border: 4px solid var(--sakura-main);
+    box-shadow: 0 0 30px rgba(255, 143, 171, 0.5), inset 0 0 20px rgba(0,0,0,0.4);
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.8);
-    transform: rotate(45deg); /* Losange futuriste */
+    background: var(--plum-dark);
 }
-.logo-emblem img { 
-    width: 142%; 
-    height: 142%; 
-    object-fit: cover; 
-    transform: rotate(-45deg) translate(-15%, -15%); /* Redresse l'image */
-}
+.logo-emblem img { width: 100%; height: 100%; object-fit: cover; }
 
 .game-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 900;
-    color: #ffffff;
-    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple), 0 0 40px var(--neon-cyan);
-    letter-spacing: 0.15em;
-    line-height: 1.2;
-    text-transform: uppercase;
+    color: var(--sakura-light);
+    text-shadow: 0 0 20px rgba(255, 143, 171, 0.6), 2px 4px 8px rgba(0,0,0,0.8);
+    letter-spacing: 0.12em;
+    line-height: 1;
 }
 
 .title-sub {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.2rem;
-    color: var(--neon-cyan);
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--paper-dark);
     margin-top: 8px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+    letter-spacing: 0.08em;
+    opacity: 0.85;
 }
 
 .title-divider {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     justify-content: center;
     margin: 16px 0;
 }
 .title-divider span {
-    height: 2px;
+    height: 1px;
     width: 80px;
-    background: linear-gradient(to right, transparent, var(--neon-purple), transparent);
+    background: linear-gradient(to right, transparent, var(--sakura-main), transparent);
 }
 .title-divider .fleur {
-    color: var(--neon-cyan);
-    font-size: 1rem;
-    font-family: 'Orbitron', sans-serif;
-    text-shadow: 0 0 10px var(--neon-cyan);
+    color: var(--sakura-main);
+    font-size: 1.2rem;
 }
 
-/* ── MAIN PANEL (Interface HUD) ── */
+/* ── MAIN PANEL ── */
 .panel {
-    background: var(--panel-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(176, 38, 255, 0.5);
-    border-top: 3px solid var(--neon-cyan);
-    border-bottom: 3px solid var(--neon-purple);
-    border-radius: 8px;
+    background: linear-gradient(160deg, rgba(58, 31, 51, 0.85) 0%, rgba(42, 22, 37, 0.95) 100%);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--sakura-dark);
+    border-radius: 20px;
     padding: 40px 50px;
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(176, 38, 255, 0.2);
+    box-shadow:
+        0 0 0 1px rgba(255, 143, 171, 0.2),
+        0 20px 60px rgba(0,0,0,0.7),
+        inset 0 1px 0 rgba(255, 209, 220, 0.2);
     text-align: center;
     animation: fadeUp 1s 0.3s ease both;
     position: relative;
 }
 
+.panel::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 30px; right: 30px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--sakura-light), transparent);
+}
+
 /* ── SCENE IMAGE ── */
 .scene-frame {
-    border-radius: 4px;
+    border-radius: 12px;
     overflow: hidden;
-    border: 1px solid var(--neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    border: 2px solid var(--sakura-dark);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 20px rgba(255, 143, 171, 0.3);
     margin-bottom: 32px;
     position: relative;
 }
 .scene-frame img {
     width: 100%;
     display: block;
-    filter: sepia(0.3) hue-rotate(220deg) saturate(1.5); /* Donne un ton bleu/cyber à l'image */
+    transition: transform 0.4s ease;
 }
+.scene-frame:hover img { transform: scale(1.02); }
 .scene-frame::after {
     content: '';
     position: absolute;
     inset: 0;
-    /* Effet Scanline (lignes d'écran) */
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 243, 255, 0.1) 2px, rgba(0, 243, 255, 0.1) 4px);
-    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 50%, rgba(42, 22, 37, 0.5) 100%);
 }
 
-/* ── LEVEL BADGE (HUD STATS) ── */
+/* ── LEVEL BADGE ── */
 .level-badge {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(0, 243, 255, 0.1);
-    border: 1px solid var(--neon-cyan);
-    border-radius: 4px;
-    padding: 8px 24px;
+    background: rgba(255, 143, 171, 0.12);
+    border: 1px solid var(--sakura-dark);
+    border-radius: 30px;
+    padding: 8px 20px;
     margin-bottom: 28px;
-    font-family: 'Orbitron', sans-serif;
-    color: var(--neon-cyan);
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3) inset;
+    font-family: 'Cinzel', serif;
+    color: var(--sakura-light);
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
 }
+.level-badge .badge-icon { font-size: 1.1rem; }
 .level-badge .level-num {
-    font-weight: 900;
-    font-size: 1.2rem;
-    color: #fff;
-    text-shadow: 0 0 8px var(--neon-cyan);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--sakura-light);
 }
 
-/* ── START BUTTON (SYSTEM BOOT) ── */
+/* ── START BUTTON ── */
 .btn-start {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
     font-weight: 700;
-    letter-spacing: 0.2em;
-    color: #fff;
-    background: linear-gradient(90deg, rgba(176,38,255,0.6) 0%, rgba(0,243,255,0.6) 100%);
-    border: 2px solid var(--neon-cyan);
-    border-radius: 4px;
+    letter-spacing: 0.15em;
+    color: var(--plum-dark);
+    /* Dégradé Rose vif vers Rose profond */
+    background: linear-gradient(135deg, var(--sakura-light) 0%, var(--sakura-main) 50%, var(--sakura-dark) 100%);
+    border: none;
+    border-radius: 50px;
     padding: 16px 48px;
     cursor: pointer;
     width: 100%;
     max-width: 280px;
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.4), inset 0 0 10px rgba(176, 38, 255, 0.5);
-    transition: all 0.3s ease;
-    text-transform: uppercase;
+    box-shadow:
+        0 4px 20px rgba(255, 143, 171, 0.4),
+        0 1px 0 rgba(255,255,255,0.4) inset,
+        0 -2px 0 rgba(0,0,0,0.2) inset;
+    transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
+    text-transform: uppercase;
+}
+.btn-start::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.4s ease;
 }
 .btn-start:hover {
-    background: linear-gradient(90deg, rgba(0,243,255,0.8) 0%, rgba(176,38,255,0.8) 100%);
-    box-shadow: 0 0 25px var(--neon-cyan), inset 0 0 15px var(--neon-purple);
-    border-color: var(--neon-purple);
-    transform: scale(1.02);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 143, 171, 0.6), 0 1px 0 rgba(255,255,255,0.4) inset;
 }
-.btn-start:active { transform: scale(0.98); }
+.btn-start:hover::before { left: 100%; }
+.btn-start:active { transform: translateY(0); }
+
+.btn-icon { font-size: 1.3rem; }
 
 /* ── DECORATIVE BOTTOM ── */
 .panel-footer {
     margin-top: 28px;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: rgba(255, 245, 248, 0.4);
+    letter-spacing: 0.05em;
 }
 
-/* ── CORNER TECH ORNAMENTS ── */
+/* ── CORNER ORNAMENTS ── */
 .ornament {
     position: absolute;
-    width: 20px; height: 20px;
-    border-color: var(--neon-cyan);
+    width: 28px; height: 28px;
+    border-color: var(--sakura-dark);
     border-style: solid;
-    box-shadow: 0 0 8px var(--neon-cyan);
+    opacity: 0.6;
 }
-.ornament.tl { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
-.ornament.tr { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
-.ornament.bl { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; border-color: var(--neon-purple); box-shadow: 0 0 8px var(--neon-purple);}
-.ornament.br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; border-color: var(--neon-purple); box-shadow: 0 0 8px var(--neon-purple);}
+.ornament.tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+.ornament.tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+.ornament.bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+.ornament.br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
 
 /* ── ANIMATIONS ── */
-@keyframes glitchIn {
-    0% { opacity: 0; transform: translateY(-20px) skewX(10deg); filter: hue-rotate(90deg); }
-    50% { opacity: 0.8; transform: translateY(5px) skewX(-10deg); filter: hue-rotate(-90deg); }
-    100% { opacity: 1; transform: translateY(0) skewX(0); filter: hue-rotate(0); }
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -250,12 +262,53 @@ body {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
-    .panel { padding: 30px 20px; }
-    .game-title { font-size: 2.2rem; }
+    .panel { padding: 28px 24px; }
+    .game-title { font-size: 2.4rem; }
 }
 @media (max-width: 480px) {
-    .game-title { font-size: 2rem; letter-spacing: 0.1em; }
-    .title-sub { font-size: 0.9rem; }
-    .btn-start { font-size: 0.9rem; padding: 14px 20px; }
-    .logo-emblem { width: 90px; height: 90px; }
+    .panel { padding: 25px 15px; }
+    .game-title { font-size: 28px; letter-spacing: 0.08em; }
+    .title-sub { font-size: 0.85rem; }
+    .btn-start { font-size: 0.95rem; padding: 14px 30px; }
+    .level-badge { font-size: 0.85rem; padding: 6px 15px; }
+    .level-badge .level-num { font-size: 0.95rem; }
+}
+
+/* =========================================================
+   CHANGEMENT DE POLICE - THÈME JAPONAIS (À METTRE À LA FIN)
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Sawarabi+Mincho&display=swap');
+
+/* 1. Police de texte (Élégante et traditionnelle) pour les descriptions */
+body, 
+.title-sub, 
+.panel-footer, 
+.contenuedescription, 
+.modal-text {
+    font-family: 'Sawarabi Mincho', serif !important;
+}
+
+/* 2. Police Calligraphie (Style Pinceau) pour les Titres, Boutons et Lettres */
+.game-title, 
+.btn-start, 
+.level-badge, 
+.header-title, 
+.back-btn, 
+.btn-primary, 
+.btn-secondary, 
+.modal-title, 
+.letter, 
+.game div,
+#keyboard::before, 
+.lifebar::before, 
+.contenuedescription::before {
+    font-family: 'Kaushan Script', cursive !important;
+}
+
+/* Ajustement de taille spécifique pour les lettres du jeu avec cette nouvelle police */
+.game div {
+    font-size: clamp(1.2rem, 4.5vw, 2rem) !important;
+}
+.letter {
+    font-size: clamp(1rem, 2vw, 1.3rem) !important;
 }

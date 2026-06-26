@@ -1,24 +1,24 @@
-/* --- game.css - THÈME CANDY / BONBONS --- */
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600;700;900&display=swap');
+/* --- game.css - THÈME CYBERPUNK / NÉON --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
 
 :root {
-    --candy-pink: #ff6b9e;
-    --candy-light: #ffb6c1;
-    --frosting: #fff9fa;
-    --chocolate: #5c3a21;
-    --choco-dark: #3a2211;
-    --blueberry: #4db8ff;
-    --lemon: #ffcf40;
-    --red-cherry: #ff3366;
-    --text-main: #5c3a21;
+    --neon-cyan: #00f3ff;
+    --neon-purple: #b026ff;
+    --neon-pink: #ff007f;
+    --dark-bg: #050510;
+    --panel-bg: rgba(10, 12, 25, 0.85);
+    --text-main: #e0eaff;
+    --text-muted: #6b7b9e;
+    --red-alert: #ff003c;
+    --letter-bg: rgba(0, 243, 255, 0.05);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     min-height: 100vh;
-    font-family: 'Nunito', sans-serif;
-    background: var(--candy-light);
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--dark-bg);
     overflow-x: hidden;
     color: var(--text-main);
 }
@@ -30,13 +30,13 @@ body {
     background-image: url('./../image/plan3.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.85) contrast(1.05);
+    filter: brightness(0.5) contrast(1.1);
     z-index: 0;
 }
 .hero-overlay {
     position: fixed;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 107, 158, 0.7) 100%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(10, 5, 30, 0.4) 0%, rgba(5, 2, 10, 0.9) 100%);
     z-index: 1;
 }
 
@@ -51,7 +51,7 @@ body {
     padding: 20px 16px 30px;
 }
 
-/* ── HEADER (Panneau de direction) ── */
+/* ── HEADER (HUD TOP) ── */
 .game-header {
     width: 100%;
     max-width: 750px;
@@ -59,60 +59,67 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    background: var(--chocolate);
-    padding: 10px 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+    padding-bottom: 10px;
 }
 
 .back-btn {
-    font-family: 'Chewy', cursive;
-    font-size: 1.1rem;
-    color: var(--lemon);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--neon-cyan);
     text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     transition: all 0.2s;
 }
-.back-btn:hover { transform: scale(1.1); color: #fff; }
+.back-btn::before { content: '< '; color: var(--neon-pink); }
+.back-btn:hover { text-shadow: 0 0 10px var(--neon-cyan); color: #fff; }
 
 .header-title {
-    font-family: 'Chewy', cursive;
-    font-size: 1.8rem;
-    color: var(--frosting);
-    text-shadow: 2px 2px 0 var(--candy-pink);
-    letter-spacing: 0.05em;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
 }
 
 .level-indicator {
-    font-family: 'Chewy', cursive;
-    font-size: 1.2rem;
-    color: var(--blueberry);
-    background: var(--frosting);
-    padding: 2px 10px;
-    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: var(--neon-pink);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 /* ── MAIN PANEL (.bigcontainer) ── */
 .bigcontainer {
-    background: var(--frosting);
-    border: 6px solid var(--candy-pink);
-    border-radius: 35px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    border-top: 3px solid var(--neon-cyan);
+    border-radius: 8px;
     width: 100%;
     max-width: 750px;
     padding: 30px;
-    box-shadow: 0 15px 30px rgba(92, 58, 33, 0.4), inset 0 -10px 0 rgba(255, 107, 158, 0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(176, 38, 255, 0.1);
     position: relative;
+    /* Effet scanline global */
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,255,0.02) 2px, rgba(0,255,255,0.02) 4px);
 }
 
-/* ── ORNAMENTS (Confettis) ── */
+/* ── ORNAMENTS ── */
 .ornament {
     position: absolute;
-    width: 18px; height: 18px;
-    border-radius: 50%;
+    width: 20px; height: 20px;
+    border-color: var(--neon-cyan);
+    border-style: solid;
 }
-.ornament.tl { top: 12px; left: 12px; background: var(--blueberry); }
-.ornament.tr { top: 12px; right: 12px; background: var(--lemon); }
-.ornament.bl { bottom: 12px; left: 12px; background: var(--candy-pink); }
-.ornament.br { bottom: 12px; right: 12px; background: var(--blueberry); }
+.ornament.tl { top: -3px; left: -3px; border-width: 3px 0 0 3px; }
+.ornament.tr { top: -3px; right: -3px; border-width: 3px 3px 0 0; }
+.ornament.bl { bottom: -3px; left: -3px; border-width: 0 0 3px 3px; border-color: var(--neon-purple); }
+.ornament.br { bottom: -3px; right: -3px; border-width: 0 3px 3px 0; border-color: var(--neon-purple); }
 
 .container {
     display: flex;
@@ -121,36 +128,38 @@ body {
     width: 100%;
 }
 
-/* ── INDICE (Emballage Bonbon) ── */
+/* ── INDICE (DATA LOG) ── */
 .contenuedescription {
     text-align: center;
-    background: #fff;
-    border: 3px dashed var(--candy-pink);
-    border-radius: 20px;
-    padding: 25px 24px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-left: 4px solid var(--neon-cyan);
+    border-right: 4px solid var(--neon-purple);
+    padding: 20px 24px;
     margin: 0 auto 28px auto;
     position: relative;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--chocolate);
+    font-size: 1.1rem;
+    color: var(--neon-cyan);
+    line-height: 1.5;
     width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.1);
 }
 
 .contenuedescription::before {
-    content: '🍬 INDICE';
+    content: '> DATA_LOG: INDICE';
     position: absolute;
-    top: -15px; left: 50%;
-    transform: translateX(-50%);
-    background: var(--candy-pink);
-    padding: 4px 15px;
-    border-radius: 20px;
-    font-family: 'Chewy', cursive;
-    font-size: 1.1rem;
-    color: #fff;
-    box-shadow: 0 4px 0 var(--choco-dark);
+    top: -12px; left: 10px;
+    background: var(--dark-bg);
+    padding: 0 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-pink);
+    border: 1px solid var(--neon-pink);
 }
 
-/* ── LIFE BAR (Cerises / Bonbons) ── */
+/* ── LIFE BAR (CORE STATUS) ── */
 .lifebar {
     display: flex;
     justify-content: center;
@@ -160,80 +169,88 @@ body {
 }
 
 .lifebar::before {
-    content: 'VIES';
-    font-family: 'Chewy', cursive;
-    font-size: 1.1rem;
-    color: var(--candy-pink);
+    content: 'SYS_INTEGRITY:';
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
     margin-right: 8px;
 }
 
 .life {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #e0e0e0;
-    box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+    width: 24px;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 0, 60, 0.3);
     transition: all 0.3s ease;
+    transform: skewX(-20deg); /* Style Tech */
 }
 
 .red {
-    background: var(--red-cherry);
-    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2), inset 5px 5px 10px rgba(255,255,255,0.6);
+    background: var(--red-alert);
+    border-color: #fff;
+    box-shadow: 0 0 10px var(--red-alert), 0 0 20px var(--red-alert);
 }
 
-/* ── WORD DISPLAY (Cubes de Marshmallow) ── */
+/* ── WORD DISPLAY (DECRYPTION SLOTS) ── */
 .game {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: clamp(6px, 1.5vw, 12px);
+    gap: clamp(4px, 1.5vw, 10px);
     margin-bottom: 35px;
     flex-wrap: nowrap;
     width: 100%;
 }
 
 .game div {
-    flex: 0 1 60px;
-    height: clamp(50px, 11vw, 70px);
-    background: #fff;
-    border: 3px solid var(--chocolate);
-    border-radius: 12px; /* Marshmallow */
+    flex: 0 1 54px;
+    height: clamp(45px, 10vw, 65px);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 243, 255, 0.4);
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Chewy', cursive;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-    color: var(--candy-pink);
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
-    box-shadow: 0 4px 0 var(--chocolate);
+    box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1);
 }
 
 .game div .baredeco {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 6px;
-    background: var(--blueberry); /* Bande de couleur au fond de la lettre */
+    height: 3px;
+    background: var(--neon-purple);
+    box-shadow: 0 0 8px var(--neon-purple);
     margin: 0;
 }
 
-/* ── KEYBOARD (Pastilles de chocolat) ── */
+/* ── KEYBOARD (INPUT TERMINAL) ── */
 #keyboard {
     margin-top: 10px;
     width: 100%;
 }
 
 #keyboard::before {
-    content: 'CHOISISSEZ UNE LETTRE';
+    content: 'INPUT >> AWAITING_KEYSTROKE';
     display: block;
-    font-family: 'Chewy', cursive;
-    font-size: 1.2rem;
-    color: var(--chocolate);
-    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-align: left;
     margin-bottom: 15px;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+    padding-bottom: 5px;
 }
 
 .keyboard2 {
@@ -244,39 +261,38 @@ body {
 }
 
 .letter {
-    width: clamp(38px, 8vw, 50px);
-    height: clamp(42px, 8vw, 55px);
-    background: var(--chocolate);
-    border: none;
-    border-radius: 10px;
+    width: clamp(34px, 7vw, 48px);
+    height: clamp(38px, 7vw, 52px);
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(176, 38, 255, 0.4);
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Chewy', cursive;
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    color: var(--frosting);
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+    font-weight: 700;
+    color: var(--neon-cyan);
     cursor: pointer;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     user-select: none;
     text-transform: uppercase;
-    box-shadow: 0 4px 0 var(--choco-dark), inset 0 2px 0 rgba(255,255,255,0.2);
 }
 
 .letter:hover {
-    background: var(--candy-pink);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 var(--choco-dark), inset 0 2px 0 rgba(255,255,255,0.4);
+    background: rgba(0, 243, 255, 0.15);
+    border-color: var(--neon-cyan);
     color: #fff;
+    text-shadow: 0 0 8px var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+    transform: translateY(-2px);
 }
 
-.letter:active { 
-    transform: translateY(4px);
-    box-shadow: 0 0px 0 var(--choco-dark);
-}
+.letter:active { transform: translateY(1px); }
 
-/* ── MODALS (Boite de Pâtisserie) ── */
+/* ── MODALS (SYSTEM ALERTS) ── */
 .cache {
-    filter: blur(5px);
+    filter: blur(8px) grayscale(50%);
     pointer-events: none;
 }
 
@@ -285,36 +301,45 @@ body {
     position: fixed;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--frosting);
-    border: 8px solid var(--candy-pink);
-    border-radius: 30px;
-    padding: 40px 30px;
+    background: rgba(10, 5, 20, 0.95);
+    backdrop-filter: blur(20px);
+    border: 2px solid;
+    border-radius: 0; /* Plus carré, tech */
+    padding: 40px 48px;
     max-width: 420px;
     width: 90%;
     text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 -10px 0 rgba(255, 107, 158, 0.1);
+    box-shadow: 0 0 50px rgba(0,0,0,1);
     z-index: 100;
-    animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
+/* Couleurs spécifiques selon le modal (géré par ID) */
+#boite { border-color: var(--red-alert); box-shadow: 0 0 30px rgba(255,0,60,0.3); }
+#boite2 { border-color: var(--neon-cyan); box-shadow: 0 0 30px rgba(0,243,255,0.3); }
+
 .modal-icon {
-    font-size: 4rem;
+    font-size: 3rem;
     margin-bottom: 15px;
     display: block;
-    animation: float 2s infinite ease-in-out;
+    filter: drop-shadow(0 0 10px currentColor);
 }
 
 .modal-title {
-    font-family: 'Chewy', cursive;
-    font-size: 2.2rem;
-    color: var(--chocolate);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
     margin-bottom: 10px;
+    text-transform: uppercase;
 }
+#boite .modal-title { color: var(--red-alert); text-shadow: 0 0 10px var(--red-alert); }
+#boite2 .modal-title { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
 
 .modal-text {
     font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--candy-pink);
+    color: var(--text-main);
+    line-height: 1.6;
     margin-bottom: 30px;
 }
 
@@ -329,42 +354,45 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Chewy', cursive;
-    font-size: 1.2rem;
-    padding: 12px 25px;
-    border-radius: 30px;
-    border: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 12px 24px;
+    border-radius: 4px;
+    border: 1px solid;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
     text-decoration: none;
-    box-shadow: 0 5px 0 var(--choco-dark);
+    text-transform: uppercase;
 }
 
 .btn-primary {
-    background: var(--candy-pink);
-    color: #fff;
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--neon-cyan);
+    border-color: var(--neon-cyan);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--choco-dark); }
-.btn-primary:active { transform: translateY(5px); box-shadow: 0 0px 0 var(--choco-dark); }
+.btn-primary:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 20px var(--neon-cyan);
+}
 
 .btn-secondary {
-    background: var(--lemon);
-    color: var(--chocolate);
+    background: transparent;
+    color: var(--text-muted);
+    border-color: var(--text-muted);
 }
-.btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--choco-dark); }
-.btn-secondary:active { transform: translateY(5px); box-shadow: 0 0px 0 var(--choco-dark); }
-
+.btn-secondary:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255,255,255,0.1);
+}
 
 /* ── ANIMATIONS ── */
-@keyframes bounceIn {
-    0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
-    50% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
-    70% { transform: translate(-50%, -50%) scale(0.9); }
-    100% { transform: translate(-50%, -50%) scale(1); }
-}
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+@keyframes popIn {
+    0% { transform: translate(-50%, -40%); opacity: 0; }
+    100% { transform: translate(-50%, -50%); opacity: 1; }
 }
 
 /* ── RESPONSIVE MOBILE ── */
@@ -373,9 +401,13 @@ body {
     .bigcontainer { 
         flex: 1; 
         padding: 20px 15px; 
-        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
     }
-    .game-header { border-radius: 10px; padding: 10px; }
-    .header-title { font-size: 1.4rem; }
+    .container { flex: 1; justify-content: space-evenly; }
+    .contenuedescription, .lifebar, .game { margin-bottom: 0; }
+    
+    .game-header { flex-direction: column; gap: 10px; align-items: center; }
+    .header-title { font-size: 1.2rem; }
     .boite { padding: 30px 20px; }
 }

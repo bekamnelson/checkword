@@ -1,18 +1,142 @@
-/* --- game.css - THÈME JAPONAIS SAKURA --- */
+/*body{
+    background-color: whitesmoke;
+    margin: 0px;
+    font-family: sans-serif;
+    font-size: 1.1em;
+    background-image: url(./../image/plan.png);
+    position: relative;
+}
+.bigcontainer{
+    width: 50%;
+   backdrop-filter: blur(10px);
+    margin: auto;
+    height: 100vh;
+    border: none;
+    box-shadow: 0px 0px 4px gray;
+    border-radius: 15px;
+
+}
+.container{
+    
+    display: flex;
+    flex-direction: column;
+    
+    margin: auto;
+    
+}
+.keyboard2{
+    display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 5px;
+  text-align: center;
+}
+.keyboard2 div{
+    padding: 10px;
+}
+.game{
+    margin: 30px auto;
+    font-size: 1.5em;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+
+}
+.game div{
+    margin: 0px 10px;
+    
+   
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.game div .baredeco{
+    height: 10px;
+    flex-wrap: 1;
+    margin: 0px;
+    margin-top: 10px 0px 0px 0px;
+    background-color: orange;
+}
+.contenuedescription{
+    margin: 30px auto;
+    text-align: center;
+    width: 200px;
+    padding: 30px;
+    border: 10px double orange;
+    border-radius: 15px;
+}
+.life{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: black;
+}
+.lifebar{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+.red{
+    background-color: red;
+}
+
+.boite{
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    box-shadow: 0px 0px 4px gray;
+    padding: 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    color: white;
+}
+button{
+    padding: 10px;
+    border:  none;
+    box-shadow: 0px 0px 4px gray;
+    border-radius: 5px;
+    margin: 20px 5px 5px 5px
+    
+}
+.cache{
+    filter: blur(5px);
+
+}
+.letter{
+    background-color: white;
+    margin: 10px;
+     border:  none;
+    box-shadow: 0px 0px 4px gray;
+    border-radius: 5px;
+}
+@media  (max-width: 700px) {
+   .bigcontainer{
+    width: 100%;
+   }
+   .boite{
+   width: 280;
+    left: 2%;
+   }
+}
+  */
+  /* --- game.css --- */
+/* --- game.css --- */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 
 :root {
-    --sakura-light: #ffd1dc;    
-    --sakura-main: #ff8fab;     
-    --sakura-dark: #d65a7e;     
-    --plum-dark: #2a1625;       
-    --plum-panel: rgba(58, 31, 51, 0.92); 
-    --lantern-glow: #ffb84d;    
-    --paper: #fff5f8;           
-    --paper-dark: #e8ccd5;      
-    --red-life: #e63946;        
-    --red-glow: rgba(230, 57, 70, 0.6);
-    --letter-bg: rgba(255, 245, 248, 0.06);
+    --gold: #c9933a;
+    --gold-light: #f0c060;
+    --gold-dark: #8a5f1a;
+    --navy: #1a2340;
+    --navy-dark: #0d1520;
+    --parchment: #f5e8c8;
+    --parchment-dark: #d4c09a;
+    --red-life: #c0392b;
+    --red-glow: rgba(192,57,43,0.5);
+    --letter-bg: rgba(245,232,200,0.08);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,7 +144,7 @@
 body {
     min-height: 100vh;
     font-family: 'Lora', serif;
-    background: var(--plum-dark);
+    background: var(--navy-dark);
     overflow-x: hidden;
 }
 
@@ -31,13 +155,13 @@ body {
     background-image: url('./../image/plan1.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.45) saturate(1.2);
+    filter: brightness(0.35) saturate(1.1);
     z-index: 0;
 }
 .hero-overlay {
     position: fixed;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(42, 22, 37, 0.8) 100%);
+    background: radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(10,15,30,0.7) 100%);
     z-index: 1;
 }
 
@@ -69,40 +193,40 @@ body {
     gap: 6px;
     font-family: 'Cinzel', serif;
     font-size: 0.8rem;
-    color: var(--sakura-main);
+    color: var(--gold);
     text-decoration: none;
     letter-spacing: 0.08em;
     opacity: 0.8;
     transition: opacity 0.2s;
 }
-.back-btn:hover { opacity: 1; text-shadow: 0 0 8px var(--sakura-main); }
+.back-btn:hover { opacity: 1; }
 
 .header-title {
     font-family: 'Cinzel', serif;
     font-size: 1.6rem;
     font-weight: 900;
-    color: var(--sakura-light);
-    text-shadow: 0 0 15px rgba(255, 143, 171, 0.6);
+    color: var(--gold-light);
+    text-shadow: 0 0 15px rgba(201,147,58,0.4);
     letter-spacing: 0.1em;
 }
 
 .level-indicator {
     font-family: 'Cinzel', serif;
     font-size: 0.85rem;
-    color: var(--paper-dark);
+    color: var(--parchment-dark);
     letter-spacing: 0.06em;
     opacity: 0.8;
 }
 
 /* ── MAIN PANEL (.bigcontainer) ── */
 .bigcontainer {
-    
-    border: 2px solid var(--sakura-dark);
+    background: linear-gradient(160deg, rgba(26,35,64,0.92) 0%, rgba(13,21,32,0.96) 100%);
+    border: 2px solid var(--gold-dark);
     border-radius: 20px;
     width: 100%;
     max-width: 700px;
     padding: 28px 32px 32px;
-    box-shadow: 0 0 0 1px rgba(255, 143, 171, 0.2), 0 20px 60px rgba(0,0,0,0.7);
+    box-shadow: 0 0 0 1px rgba(201,147,58,0.1), 0 20px 60px rgba(0,0,0,0.7);
     position: relative;
     animation: fadeUp 0.5s 0.1s ease both;
 }
@@ -112,16 +236,16 @@ body {
     position: absolute;
     top: -1px; left: 30px; right: 30px;
     height: 2px;
-    background: linear-gradient(to right, transparent, var(--sakura-light), transparent);
+    background: linear-gradient(to right, transparent, var(--gold-light), transparent);
 }
 
 /* ── ORNAMENTS ── */
 .ornament {
     position: absolute;
     width: 22px; height: 22px;
-    border-color: var(--sakura-dark);
+    border-color: var(--gold-dark);
     border-style: solid;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 .ornament.tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
 .ornament.tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
@@ -138,32 +262,30 @@ body {
 /* ── INDICE (.contenuedescription) ── */
 .contenuedescription {
     text-align: center;
-    border: 1px solid rgba(255, 143, 171, 0.3);
+    border: 1px solid rgba(201,147,58,0.25);
     border-radius: 12px;
-    background: rgba(255, 143, 171, 0.08);
+    background: rgba(201,147,58,0.06);
     padding: 22px 24px 16px;
     margin: 0 auto 28px auto;
     position: relative;
     font-size: 1rem;
     font-style: italic;
-    color: var(--paper);
+    color: var(--parchment);
     line-height: 1.5;
     width: 100%;
 }
 
 .contenuedescription::before {
-    content: '🌸 INDICE';
+    content: '🔍 INDICE';
     position: absolute;
     top: -12px; left: 50%;
     transform: translateX(-50%);
-    background: var(--plum-dark);
+    background: var(--navy-dark);
     padding: 0 10px;
     font-family: 'Cinzel', serif;
     font-size: 0.7rem;
     letter-spacing: 0.15em;
-    color: var(--sakura-main);
-    border-radius: 10px;
-    border: 1px solid var(--sakura-dark);
+    color: var(--gold);
 }
 
 /* ── LIFE BAR (.lifebar) ── */
@@ -180,7 +302,7 @@ body {
     font-family: 'Cinzel', serif;
     font-size: 0.7rem;
     letter-spacing: 0.1em;
-    color: rgba(255, 245, 248, 0.5);
+    color: rgba(245,232,200,0.45);
     margin-right: 4px;
 }
 
@@ -188,7 +310,7 @@ body {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 143, 171, 0.4);
+    border: 2px solid rgba(201,147,58,0.3);
     background: rgba(255,255,255,0.06);
     transition: all 0.3s ease;
     position: relative;
@@ -196,44 +318,45 @@ body {
 
 .red {
     background: var(--red-life);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 0 12px var(--red-glow);
+    border-color: rgba(192,57,43,0.6);
+    box-shadow: 0 0 10px var(--red-glow);
 }
 
 .red::after {
-    content: '🏮'; /* Lanterne à la place du coeur si on veut, ou fleur de cerisier */
+    content: '♥';
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     font-size: 10px;
+    color: rgba(255,200,200,0.8);
 }
 
-/* ── WORD DISPLAY (.game) ── */
+/* ── WORD DISPLAY (.game) - ADAPTÉ POUR MOBILE ── */
 .game {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: clamp(2px, 1.5vw, 8px); 
+    gap: clamp(2px, 1.5vw, 8px); /* L'espace rétrécit sur mobile */
     margin-bottom: 32px;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap; /* FORCE LES LETTRES SUR UNE SEULE LIGNE */
     width: 100%;
 }
 
 .game div {
-    flex: 0 1 54px;
+    flex: 0 1 54px; /* Permet aux cases de rétrécir si le mot est long */
     height: clamp(40px, 10vw, 62px);
     background: var(--letter-bg);
-    border: 1px solid rgba(255, 143, 171, 0.3);
+    border: 1px solid rgba(201,147,58,0.25);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: 'Cinzel', serif;
-    font-size: clamp(0.9rem, 3.5vw, 1.6rem);
+    font-size: clamp(0.9rem, 3.5vw, 1.6rem); /* Le texte rétrécit pour ne pas déborder */
     font-weight: 700;
-    color: var(--paper);
-    text-shadow: 0 0 8px rgba(255, 209, 220, 0.6);
+    color: var(--parchment);
+    text-shadow: 0 0 8px rgba(240,192,96,0.4);
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
@@ -244,7 +367,7 @@ body {
     bottom: 4px;
     width: 80%;
     height: 2px;
-    background: linear-gradient(to right, transparent, var(--lantern-glow), transparent);
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
     margin: 0;
 }
 
@@ -260,7 +383,7 @@ body {
     font-family: 'Cinzel', serif;
     font-size: 0.65rem;
     letter-spacing: 0.15em;
-    color: rgba(255, 245, 248, 0.4);
+    color: rgba(245,232,200,0.35);
     text-align: center;
     margin-bottom: 12px;
 }
@@ -275,8 +398,8 @@ body {
 .letter {
     width: clamp(32px, 7vw, 46px);
     height: clamp(36px, 7vw, 50px);
-    background: rgba(255, 245, 248, 0.05);
-    border: 1px solid rgba(255, 143, 171, 0.25);
+    background: rgba(245,232,200,0.07);
+    border: 1px solid rgba(201,147,58,0.2);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -284,18 +407,17 @@ body {
     font-family: 'Cinzel', serif;
     font-size: clamp(0.8rem, 1.5vw, 1rem);
     font-weight: 600;
-    color: var(--paper);
+    color: var(--parchment);
     cursor: pointer;
     transition: all 0.2s ease;
     user-select: none;
 }
 
 .letter:hover {
-    background: rgba(255, 143, 171, 0.2);
-    border-color: var(--sakura-main);
+    background: rgba(201,147,58,0.15);
+    border-color: var(--gold-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 10px rgba(255, 143, 171, 0.3);
-    color: var(--sakura-light);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .letter:active {
@@ -309,18 +431,18 @@ body {
 }
 
 .boite {
-    display: none; 
+    display: none; /* Géré par ton JS */
     position: fixed;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(160deg, rgba(58, 31, 51, 0.98), rgba(42, 22, 37, 0.99));
-    border: 2px solid var(--sakura-dark);
+    background: linear-gradient(160deg, rgba(26,35,64,0.98), rgba(13,21,32,0.99));
+    border: 2px solid var(--gold-dark);
     border-radius: 20px;
     padding: 40px 48px;
     max-width: 400px;
     width: 90%;
     text-align: center;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 0 1px rgba(255, 143, 171, 0.2);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,147,58,0.15);
     z-index: 100;
     animation: popIn 0.35s ease both;
 }
@@ -330,7 +452,7 @@ body {
     position: absolute;
     top: -1px; left: 30px; right: 30px;
     height: 2px;
-    background: linear-gradient(to right, transparent, var(--sakura-light), transparent);
+    background: linear-gradient(to right, transparent, var(--gold-light), transparent);
 }
 
 .modal-icon {
@@ -344,15 +466,14 @@ body {
     font-family: 'Cinzel', serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--sakura-light);
-    text-shadow: 0 0 10px var(--sakura-main);
+    color: var(--gold-light);
     letter-spacing: 0.08em;
     margin-bottom: 10px;
 }
 
 .modal-text {
     font-style: italic;
-    color: var(--paper-dark);
+    color: var(--parchment-dark);
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 28px;
@@ -383,24 +504,24 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--sakura-light), var(--sakura-main), var(--sakura-dark));
-    color: var(--plum-dark);
-    box-shadow: 0 4px 20px rgba(255, 143, 171, 0.4);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+    color: var(--navy-dark);
+    box-shadow: 0 4px 20px rgba(201,147,58,0.35);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(255, 143, 171, 0.6);
+    box-shadow: 0 8px 28px rgba(201,147,58,0.5);
 }
 
 .btn-secondary {
-    background: rgba(255, 245, 248, 0.08);
-    color: var(--paper-dark);
-    border: 1px solid rgba(255, 245, 248, 0.2);
+    background: rgba(245,232,200,0.08);
+    color: var(--parchment-dark);
+    border: 1px solid rgba(245,232,200,0.15);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 245, 248, 0.15);
+    background: rgba(245,232,200,0.14);
 }
 
 /* ── ANIMATIONS ── */
@@ -418,30 +539,40 @@ body {
 }
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); text-shadow: 0 0 15px var(--lantern-glow); }
+    50% { transform: scale(1.08); }
 }
 
 /* ── RESPONSIVE MOBILE ── */
+/* ── RESPONSIVE MOBILE ── */
 @media (max-width: 500px) {
+    /* On réduit les marges extérieures pour coller plus aux bords de l'écran */
     .game-wrap { 
         padding: 15px 10px 15px 10px; 
         min-height: 100vh;
     }
+    
+    /* Le carré principal s'étire pour prendre tout l'espace vertical restant */
     .bigcontainer { 
-        flex: 1; 
+        flex: 1; /* C'est ça qui force le carré à descendre jusqu'en bas */
         padding: 20px 10px; 
         display: flex;
         flex-direction: column;
     }
+
+    /* On répartit l'espace vide entre les éléments pour que ça respire bien */
     .container {
         flex: 1;
         justify-content: space-evenly; 
     }
+
+    /* On réduit un peu les marges du bas des éléments puisqu'ils sont répartis automatiquement */
     .contenuedescription, .lifebar, .game {
         margin-bottom: 0;
     }
+
     .boite { padding: 30px 24px; }
     
+    /* Ajustement de l'en-tête pour que tout tienne sur une ligne */
     .header-title { 
         font-size: clamp(1rem, 4vw, 1.2rem); 
         letter-spacing: 0.05em; 
@@ -449,49 +580,25 @@ body {
     .back-btn { font-size: 0.7rem; }
     .level-indicator { font-size: 0.75rem; }
 }
-
+/* ── ULTRA PETIT ÉCRAN (En dessous de 320px) ── */
 @media (max-width: 320px) {
-    .game-header { flex-wrap: wrap; }
-    .header-title { order: 3; width: 100%; text-align: center; margin-top: 12px; font-size: 1.3rem; }
-    .back-btn { order: 1; }
-    .level-indicator { order: 2; }
-}
-
-/* =========================================================
-   CHANGEMENT DE POLICE - THÈME JAPONAIS (À METTRE À LA FIN)
-   ========================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Sawarabi+Mincho&display=swap');
-
-/* 1. Police de texte (Élégante et traditionnelle) pour les descriptions */
-body, 
-.title-sub, 
-.panel-footer, 
-.contenuedescription, 
-.modal-text {
-    font-family: 'Sawarabi Mincho', serif !important;
-}
-
-/* 2. Police Calligraphie (Style Pinceau) pour les Titres, Boutons et Lettres */
-.game-title, 
-.btn-start, 
-.level-badge, 
-.header-title, 
-.back-btn, 
-.btn-primary, 
-.btn-secondary, 
-.modal-title, 
-.letter, 
-.game div,
-#keyboard::before, 
-.lifebar::before, 
-.contenuedescription::before {
-    font-family: 'Kaushan Script', cursive !important;
-}
-
-/* Ajustement de taille spécifique pour les lettres du jeu avec cette nouvelle police */
-.game div {
-    font-size: clamp(1.2rem, 4.5vw, 2rem) !important;
-}
-.letter {
-    font-size: clamp(1rem, 2vw, 1.3rem) !important;
+    .game-header {
+        flex-wrap: wrap; /* Autorise les éléments à passer à la ligne */
+    }
+    
+    .header-title {
+        order: 3; /* Force le titre à se placer en dessous des deux autres */
+        width: 100%; /* Lui donne toute la largeur de l'écran */
+        text-align: center; /* Centre le titre */
+        margin-top: 12px; /* Ajoute un petit espace au-dessus du titre */
+        font-size: 1.3rem; /* Redonne une taille lisible au titre */
+    }
+    
+    .back-btn {
+        order: 1; /* Reste en haut à gauche */
+    }
+    
+    .level-indicator {
+        order: 2; /* Reste en haut à droite */
+    }
 }

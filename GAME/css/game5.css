@@ -1,25 +1,25 @@
-/* --- game.css - THÈME RUE JAPONAISE / CRÉPUSCULE ANIME --- */
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap');
+/* --- game.css - THÈME SOUS-MARIN / OCÉAN MAGIQUE --- */
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Quicksand:wght@400;600;700&display=swap');
 
 :root {
-    --sunset-gold: #ffca28;
-    --sunset-orange: #f57c00;
-    --dusk-shadow: #2d241f;
-    --panel-bg: rgba(35, 28, 25, 0.85);
-    --sign-green: #436644;
-    --text-light: #fff8e1;
-    --text-muted: #9e8e86;
-    --letter-bg: rgba(255, 255, 255, 0.05);
+    --ocean-deep: #061539;
+    --ocean-mid: #104b82;
+    --ocean-light: #38b6ff;
+    --coral: #ff6b4a;
+    --sand: #e3c19b;
+    --wood-light: #8c5a35;
+    --wood-dark: #4a2c15;
+    --glass-bg: rgba(6, 21, 57, 0.65);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     min-height: 100vh;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    background: var(--dusk-shadow);
+    font-family: 'Quicksand', sans-serif;
+    background: var(--ocean-deep);
     overflow-x: hidden;
-    color: var(--text-light);
+    color: white;
 }
 
 /* ── BACKGROUNDS ── */
@@ -29,13 +29,13 @@ body {
     background-image: url('./../image/plan5.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.6) saturate(1.1); /* Plus sombre pour jouer confortablement */
+    filter: brightness(0.65) saturate(1.1);
     z-index: 0;
 }
 .hero-overlay {
     position: fixed;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(245, 124, 0, 0.1) 0%, rgba(20, 15, 12, 0.9) 100%);
+    background: radial-gradient(ellipse at 50% 30%, rgba(56, 182, 255, 0.15) 0%, rgba(6, 21, 57, 0.85) 100%);
     z-index: 1;
 }
 
@@ -53,54 +53,70 @@ body {
 /* ── HEADER ── */
 .game-header {
     width: 100%;
-    max-width: 700px;
+    max-width: 750px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.3);
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 20px;
     backdrop-filter: blur(5px);
-    border-bottom: 2px solid var(--sunset-orange);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .back-btn {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--sunset-gold);
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.1rem;
+    color: var(--ocean-light);
     text-decoration: none;
     transition: all 0.2s;
+    letter-spacing: 0.05em;
 }
-.back-btn:hover { color: #fff; text-shadow: 0 0 8px var(--sunset-gold); }
+.back-btn:hover { color: #fff; text-shadow: 0 0 10px var(--ocean-light); }
 
 .header-title {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--text-light);
-    text-shadow: 0 0 10px var(--sunset-orange);
-    letter-spacing: 0.05em;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 0 15px var(--ocean-light);
+    letter-spacing: 0.1em;
 }
 
 .level-indicator {
-    font-size: 0.9rem;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 700;
-    color: var(--text-muted);
+    font-size: 1rem;
+    color: var(--sand);
+    text-transform: uppercase;
 }
 
-/* ── MAIN PANEL (.bigcontainer) ── */
+/* ── MAIN PANEL (.bigcontainer) : Grosse Bulle d'eau ── */
 .bigcontainer {
-    background: var(--panel-bg);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 202, 40, 0.2);
-    border-top: 5px solid var(--sign-green);
-    border-radius: 12px;
+    border: 2px solid rgba(56, 182, 255, 0.4);
+    border-radius: 30px;
     width: 100%;
-    max-width: 700px;
+    max-width: 750px;
     padding: 30px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.8), 
+        inset 0 0 30px rgba(56, 182, 255, 0.2);
     position: relative;
 }
+
+/* ── ORNAMENTS (Petites Bulles) ── */
+.ornament {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0.1) 60%, transparent);
+    border: 1px solid rgba(255,255,255,0.4);
+}
+.ornament.tl { top: -8px; left: -8px; width: 25px; height: 25px; }
+.ornament.tr { top: -12px; right: 10px; width: 15px; height: 15px; }
+.ornament.bl { bottom: 10px; left: -10px; width: 20px; height: 20px; }
+.ornament.br { bottom: -5px; right: -5px; width: 30px; height: 30px; }
 
 .container {
     display: flex;
@@ -109,36 +125,38 @@ body {
     width: 100%;
 }
 
-/* ── INDICE (Affiche murale japonaise) ── */
+/* ── INDICE (Panneau de bois sous-marin) ── */
 .contenuedescription {
     text-align: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-left: 4px solid var(--sign-green); /* Rappel du panneau vert */
-    border-radius: 4px;
-    padding: 20px 24px;
+    background: var(--wood-light);
+    border: 3px solid var(--wood-dark);
+    border-radius: 8px;
+    padding: 25px 24px 20px;
     margin: 0 auto 28px auto;
     position: relative;
     font-size: 1.1rem;
-    color: var(--text-light);
+    font-weight: 700;
+    color: #fff;
     width: 100%;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 2px #000;
 }
 
 .contenuedescription::before {
-    content: 'ヒント (INDICE)';
+    content: '⚓ INDICE';
     position: absolute;
-    top: -12px; left: 15px;
-    background: var(--sign-green);
-    padding: 2px 10px;
-    border-radius: 3px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    top: -16px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--wood-dark);
+    padding: 4px 15px;
+    border-radius: 5px;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.1rem;
+    color: var(--sand);
+    border: 2px solid var(--wood-light);
 }
 
-/* ── LIFE BAR (Lumières du crépuscule) ── */
+/* ── LIFE BAR (Bulles d'oxygène) ── */
 .lifebar {
     display: flex;
     justify-content: center;
@@ -148,35 +166,39 @@ body {
 }
 
 .lifebar::before {
-    content: 'VIES';
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    margin-right: 5px;
+    content: 'OXYGÈNE';
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.1rem;
+    color: var(--ocean-light);
+    margin-right: 8px;
+    letter-spacing: 0.1em;
 }
 
 .life {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background: rgba(0,0,0,0.5);
-    border: 2px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
     transition: all 0.3s ease;
 }
 
-/* Vies pleines = lampadaires allumés */
+/* Quand la vie est pleine, c'est une bulle orange corail lumineuse */
 .red {
-    background: var(--sunset-gold);
+    background: var(--coral);
     border-color: #fff;
-    box-shadow: 0 0 12px var(--sunset-gold), 0 0 25px var(--sunset-orange);
+    box-shadow: 
+        0 0 10px var(--coral), 
+        inset -4px -4px 8px rgba(0,0,0,0.3), 
+        inset 4px 4px 8px rgba(255,255,255,0.6);
 }
 
-/* ── WORD DISPLAY (Blocs d'asphalte / Ombre) ── */
+/* ── WORD DISPLAY (Bulles contenant les lettres) ── */
 .game {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: clamp(4px, 1.5vw, 8px);
+    gap: clamp(4px, 1.5vw, 10px);
     margin-bottom: 35px;
     flex-wrap: nowrap;
     width: 100%;
@@ -185,90 +207,91 @@ body {
 .game div {
     flex: 0 1 54px;
     height: clamp(45px, 10vw, 65px);
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 6px;
+    background: rgba(56, 182, 255, 0.15); /* Verre bleuté */
+    border: 2px solid rgba(56, 182, 255, 0.5);
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 900;
-    color: var(--sunset-gold);
-    text-shadow: 0 0 10px rgba(245, 124, 0, 0.5);
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    color: #fff;
+    text-shadow: 0 0 10px var(--ocean-light);
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
+    box-shadow: inset 0 0 15px rgba(56, 182, 255, 0.2);
 }
 
 .game div .baredeco {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 3px;
-    background: var(--sunset-orange);
+    height: 4px;
+    background: var(--ocean-light);
     margin: 0;
-    box-shadow: 0 -2px 10px var(--sunset-orange);
+    box-shadow: 0 0 8px var(--ocean-light);
 }
 
-/* ── KEYBOARD (Pavés de la rue) ── */
+/* ── KEYBOARD (Galets de Sable) ── */
 #keyboard {
     margin-top: 10px;
     width: 100%;
 }
 
 #keyboard::before {
-    content: 'LETTRES';
+    content: 'CHOISISSEZ UNE LETTRE';
     display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-align: left;
-    margin-bottom: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 5px;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.2rem;
+    color: var(--sand);
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 0.05em;
 }
 
 .keyboard2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .letter {
-    width: clamp(34px, 7vw, 46px);
-    height: clamp(40px, 7vw, 50px);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
+    width: clamp(34px, 7vw, 48px);
+    height: clamp(38px, 7vw, 52px);
+    background: rgba(227, 193, 155, 0.15); /* Sable transparent */
+    border: 1px solid rgba(227, 193, 155, 0.4);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    font-weight: 700;
-    color: var(--text-light);
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: var(--sand);
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
     user-select: none;
     text-transform: uppercase;
+    backdrop-filter: blur(4px);
 }
 
 .letter:hover {
-    background: var(--sunset-orange);
-    border-color: var(--sunset-gold);
+    background: var(--ocean-light);
+    border-color: #fff;
     color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5), 0 0 15px var(--ocean-light);
 }
 
 .letter:active { 
-    transform: translateY(1px);
+    transform: translateY(2px);
 }
 
-/* ── MODALS (Fin de partie) ── */
+/* ── MODALS (Coffre de Victoire / Défaite) ── */
 .cache {
-    filter: blur(6px);
+    filter: blur(8px);
     pointer-events: none;
 }
 
@@ -277,38 +300,41 @@ body {
     position: fixed;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--panel-bg);
-    backdrop-filter: blur(15px);
-    border: 2px solid var(--sunset-orange);
-    border-top: 8px solid var(--sunset-gold);
-    border-radius: 12px;
+    background: var(--wood-light);
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.05), rgba(0,0,0,0.05) 2px, transparent 2px, transparent 4px);
+    border: 4px solid var(--wood-dark);
+    border-radius: 15px;
     padding: 40px 30px;
-    max-width: 400px;
+    max-width: 420px;
     width: 90%;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(0,0,0,0.6);
     z-index: 100;
-    animation: fadeIn 0.4s ease both;
+    animation: floatIn 0.5s ease both;
 }
 
 .modal-icon {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
+    font-size: 4rem;
+    margin-bottom: 15px;
     display: block;
-    text-shadow: 0 0 20px rgba(255, 202, 40, 0.5);
+    animation: float 3s infinite ease-in-out;
 }
 
 .modal-title {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--text-light);
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 2.2rem;
+    color: var(--sand);
     margin-bottom: 10px;
+    text-shadow: 2px 2px 4px #000;
+    letter-spacing: 0.05em;
 }
 
 .modal-text {
     font-size: 1.1rem;
-    color: var(--text-muted);
+    font-weight: 700;
+    color: #fff;
     margin-bottom: 30px;
+    text-shadow: 1px 1px 2px #000;
 }
 
 .boite .button {
@@ -322,33 +348,40 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 12px 25px;
-    border-radius: 6px;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.2rem;
+    padding: 10px 25px;
+    border-radius: 30px;
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .btn-primary {
-    background: var(--sunset-orange);
+    background: var(--coral);
     color: #fff;
+    box-shadow: 0 4px 0 #cc4629, 0 8px 15px rgba(0,0,0,0.4);
 }
-.btn-primary:hover { background: var(--sunset-gold); color: #000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 202, 40, 0.4); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #cc4629, 0 10px 20px rgba(0,0,0,0.5); }
+.btn-primary:active { transform: translateY(4px); box-shadow: 0 0px 0 #cc4629; }
 
 .btn-secondary {
-    background: rgba(255,255,255,0.1);
-    color: var(--text-light);
+    background: rgba(255,255,255,0.2);
+    color: var(--sand);
+    border: 2px solid var(--sand);
 }
-.btn-secondary:hover { background: rgba(255,255,255,0.2); }
+.btn-secondary:hover { background: var(--sand); color: var(--wood-dark); }
 
 /* ── ANIMATIONS ── */
-@keyframes fadeIn {
-    0% { transform: translate(-50%, -45%); opacity: 0; }
+@keyframes floatIn {
+    0% { transform: translate(-50%, -40%); opacity: 0; }
     100% { transform: translate(-50%, -50%); opacity: 1; }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 /* ── RESPONSIVE MOBILE ── */
@@ -357,7 +390,9 @@ body {
     .bigcontainer { 
         flex: 1; 
         padding: 20px 15px; 
+        border-radius: 20px;
     }
-    .header-title { font-size: 1.3rem; }
+    .game-header { border-radius: 10px; padding: 10px; }
+    .header-title { font-size: 1.4rem; }
     .boite { padding: 30px 20px; }
 }

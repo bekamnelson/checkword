@@ -1,129 +1,3 @@
-/*body{
-    background-color: whitesmoke;
-    margin: 0px;
-    font-family: sans-serif;
-    font-size: 1.1em;
-    background-image: url(./../image/plan.png);
-    position: relative;
-}
-.bigcontainer{
-    width: 50%;
-   backdrop-filter: blur(10px);
-    margin: auto;
-    height: 100vh;
-    border: none;
-    box-shadow: 0px 0px 4px gray;
-    border-radius: 15px;
-
-}
-.container{
-    
-    display: flex;
-    flex-direction: column;
-    
-    margin: auto;
-    
-}
-.keyboard2{
-    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-  gap: 5px;
-  text-align: center;
-}
-.keyboard2 div{
-    padding: 10px;
-}
-.game{
-    margin: 30px auto;
-    font-size: 1.5em;
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-
-}
-.game div{
-    margin: 0px 10px;
-    
-   
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-}
-.game div .baredeco{
-    height: 10px;
-    flex-wrap: 1;
-    margin: 0px;
-    margin-top: 10px 0px 0px 0px;
-    background-color: orange;
-}
-.contenuedescription{
-    margin: 30px auto;
-    text-align: center;
-    width: 200px;
-    padding: 30px;
-    border: 10px double orange;
-    border-radius: 15px;
-}
-.life{
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    background-color: black;
-}
-.lifebar{
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 20px;
-}
-.red{
-    background-color: red;
-}
-
-.boite{
-    text-align: center;
-    width: 300px;
-    margin: auto;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    box-shadow: 0px 0px 4px gray;
-    padding: 30px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    color: white;
-}
-button{
-    padding: 10px;
-    border:  none;
-    box-shadow: 0px 0px 4px gray;
-    border-radius: 5px;
-    margin: 20px 5px 5px 5px
-    
-}
-.cache{
-    filter: blur(5px);
-
-}
-.letter{
-    background-color: white;
-    margin: 10px;
-     border:  none;
-    box-shadow: 0px 0px 4px gray;
-    border-radius: 5px;
-}
-@media  (max-width: 700px) {
-   .bigcontainer{
-    width: 100%;
-   }
-   .boite{
-   width: 280;
-    left: 2%;
-   }
-}
-  */
-  /* --- game.css --- */
-/* --- game.css --- */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 
 :root {
@@ -152,7 +26,7 @@ body {
 .hero-bg {
     position: fixed;
     inset: 0;
-    background-image: url('./../image/plan.png');
+    background-image: url('./../image/plan1.png');
     background-size: cover;
     background-position: center;
     filter: brightness(0.35) saturate(1.1);
@@ -424,181 +298,217 @@ body {
     transform: translateY(0);
 }
 
-/* ── MODALS (.boite) ── */
-.cache {
-    filter: blur(6px);
-    pointer-events: none;
+
+
+.players{
+    width: 100px;
+    height: 100px;
 }
 
-.boite {
-    display: none; /* Géré par ton JS */
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(160deg, rgba(26,35,64,0.98), rgba(13,21,32,0.99));
-    border: 2px solid var(--gold-dark);
-    border-radius: 20px;
-    padding: 40px 48px;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,147,58,0.15);
-    z-index: 100;
-    animation: popIn 0.35s ease both;
-}
-
-.boite::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 30px; right: 30px;
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--gold-light), transparent);
-}
-
-.modal-icon {
-    font-size: 3.5rem;
-    margin-bottom: 16px;
-    display: block;
-    animation: pulse 2s infinite;
-}
-
-.modal-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--gold-light);
-    letter-spacing: 0.08em;
-    margin-bottom: 10px;
-}
-
-.modal-text {
-    font-style: italic;
-    color: var(--parchment-dark);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 28px;
-}
-
-.boite .button {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.btn-primary, .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    padding: 12px 24px;
+.imageplayers{
+    width: 50px;
     border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    text-decoration: none;
-    text-transform: uppercase;
+    margin: auto;
+}
+.nameplayers{
+    text-align: center;
+}
+.image{
+    margin: auto;
+    width: 50px;
+}
+.life {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(201,147,58,0.3);
+    background: rgba(255,255,255,0.06);
+    transition: all 0.3s ease;
+    
+}
+
+.red {
+    background: var(--red-life);
+    border-color: rgba(192,57,43,0.6);
+    box-shadow: 0 0 10px var(--red-glow);
+}
+.lifebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    margin: 5px;
+}
+
+.containtplayers{
+    width: 100px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+}
+/* AJOUTS POUR LES FORMULAIRES ET LE MULTIJOUEUR */
+.cache {
+    display: none !important;
+}
+
+.input-gold {
+    width: 80%;
+    padding: 12px;
+    background: rgba(13, 21, 32, 0.8);
+    border: 2px solid var(--gold-dark);
+    border-radius: 8px;
+    color: var(--parchment);
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.input-gold:focus {
+    border-color: var(--gold-light);
+    box-shadow: 0 0 10px rgba(240,192,96,0.3);
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+    background: linear-gradient(to bottom, var(--gold-light), var(--gold-dark));
     color: var(--navy-dark);
-    box-shadow: 0 4px 20px rgba(201,147,58,0.35);
+    border: none;
+    padding: 12px 24px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(201,147,58,0.5);
+    box-shadow: 0 5px 15px rgba(240,192,96,0.4);
 }
 
+/* Styles pour les profils des joueurs */
+.player-box {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    background: rgba(255,255,255,0.05);
+}
+
+/* Le joueur qui est le Maître du jeu (ne joue pas ce tour) */
+.player-master {
+    border: 2px dashed #888;
+    opacity: 0.8;
+}
+
+/* Le joueur à qui c'est le tour de deviner */
+.player-active {
+    border: 2px solid var(--gold-light);
+    box-shadow: 0 0 15px rgba(240,192,96,0.6);
+    transform: scale(1.05);
+}
+
+/* Joueur éliminé (0 vie) */
+.player-dead {
+    opacity: 0.3;
+    filter: grayscale(100%);
+    pointer-events: none;
+}
+
+.letter.disabled {
+    pointer-events: none;
+    opacity: 0.3;
+    background: #333;
+}
+
+/* ==========================================
+   MODALES (BOÎTES DE VICTOIRE ET DE MANCHE)
+   ========================================== */
+
+/* La boîte principale (Pop-up centrale) */
+.boite {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(160deg, rgba(26,35,64,0.98) 0%, rgba(13,21,32,0.98) 100%);
+    border: 2px solid var(--gold-light);
+    border-radius: 15px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    z-index: 9999; /* Toujours au-dessus de tout le reste */
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(201, 147, 58, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* L'animation d'apparition (Effet de "Pop") */
+@keyframes popIn {
+    0% { opacity: 0; transform: translate(-50%, -40%) scale(0.8); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* On applique l'animation seulement quand la boîte n'a pas la classe .cache */
+.boite:not(.cache) {
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Icône (Couronne ou Trophée) */
+.modal-icon {
+    font-size: 4rem;
+    line-height: 1;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(240, 192, 96, 0.5));
+}
+
+/* Titre de la boîte */
+.modal-title {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-light);
+    font-size: 2rem;
+    font-weight: 900;
+    text-shadow: 0 0 15px rgba(240,192,96,0.4);
+    letter-spacing: 0.1em;
+}
+
+/* Texte explicatif (Qui a gagné) */
+.modal-text {
+    color: var(--parchment);
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Conteneur des boutons */
+.boite .button {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap; /* Pour s'adapter aux petits écrans */
+}
+
+/* Bouton Secondaire (Le bouton "Quitter") */
 .btn-secondary {
-    background: rgba(245,232,200,0.08);
-    color: var(--parchment-dark);
-    border: 1px solid rgba(245,232,200,0.15);
+    background: transparent;
+    color: var(--gold-light);
+    border: 2px solid var(--gold-dark);
+    padding: 12px 24px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .btn-secondary:hover {
-    background: rgba(245,232,200,0.14);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes popIn {
-    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-}
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-}
-
-/* ── RESPONSIVE MOBILE ── */
-/* ── RESPONSIVE MOBILE ── */
-@media (max-width: 500px) {
-    /* On réduit les marges extérieures pour coller plus aux bords de l'écran */
-    .game-wrap { 
-        padding: 15px 10px 15px 10px; 
-        min-height: 100vh;
-    }
-    
-    /* Le carré principal s'étire pour prendre tout l'espace vertical restant */
-    .bigcontainer { 
-        flex: 1; /* C'est ça qui force le carré à descendre jusqu'en bas */
-        padding: 20px 10px; 
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* On répartit l'espace vide entre les éléments pour que ça respire bien */
-    .container {
-        flex: 1;
-        justify-content: space-evenly; 
-    }
-
-    /* On réduit un peu les marges du bas des éléments puisqu'ils sont répartis automatiquement */
-    .contenuedescription, .lifebar, .game {
-        margin-bottom: 0;
-    }
-
-    .boite { padding: 30px 24px; }
-    
-    /* Ajustement de l'en-tête pour que tout tienne sur une ligne */
-    .header-title { 
-        font-size: clamp(1rem, 4vw, 1.2rem); 
-        letter-spacing: 0.05em; 
-    }
-    .back-btn { font-size: 0.7rem; }
-    .level-indicator { font-size: 0.75rem; }
-}
-/* ── ULTRA PETIT ÉCRAN (En dessous de 320px) ── */
-@media (max-width: 320px) {
-    .game-header {
-        flex-wrap: wrap; /* Autorise les éléments à passer à la ligne */
-    }
-    
-    .header-title {
-        order: 3; /* Force le titre à se placer en dessous des deux autres */
-        width: 100%; /* Lui donne toute la largeur de l'écran */
-        text-align: center; /* Centre le titre */
-        margin-top: 12px; /* Ajoute un petit espace au-dessus du titre */
-        font-size: 1.3rem; /* Redonne une taille lisible au titre */
-    }
-    
-    .back-btn {
-        order: 1; /* Reste en haut à gauche */
-    }
-    
-    .level-indicator {
-        order: 2; /* Reste en haut à droite */
-    }
+    background: rgba(201,147,58,0.15);
+    border-color: var(--gold-light);
+    transform: translateY(-2px);
 }
